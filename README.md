@@ -18,6 +18,150 @@ Gemma 4 is not a feature in VibeUp. It is the engine. Every signal classified, e
 
 ---
 
+## 📄 HackMatrix 2026 — Round 2 Submission Document
+
+### 01 — Team Information
+| Field | Details |
+|---|---|
+| **Team Name** | Only Semi's |
+| **Team Leader** | Vedanth |
+| **Contact** | vedanth.k.engr@gmail.com / +91 8248849332 |
+| **Event** | HackMatrix 2026 — Round 2 |
+
+### 02 — Project Links
+| Resource | Link |
+|---|---|
+| **GitHub Repository** | [https://github.com/vedanthk-engr/VibeUp-BwG](https://github.com/vedanthk-engr/VibeUp-BwG) |
+| **Live Deployed Link** | [https://vibe-up-bwg.vercel.app](https://vibe-up-bwg.vercel.app) |
+| **Demo Video** | [https://youtu.be/J6dfH6dNUqQ](https://youtu.be/J6dfH6dNUqQ) |
+
+### 03 — Project Identity
+- **Project Name**: VibeUp — Multi-Agent Autonomous Financial Intelligence Engine
+- **One Line**: VibeUp deploys a swarm of 6 autonomous Gemma 4 agents that simultaneously classify live NSE market signals, synthesize SEBI filings via RAG, analyze retail sentiment, assess portfolio risk, and stream institutional-grade investment intelligence to retail investors who have never had access to it.
+
+### 04 — Platform Preview
+VibeUp is a full-stack web application built for Gen Z Indian retail investors. The interface features a live War Room dashboard with TradingView candlestick charts, a TikTok-style AI signal feed, a 4-agent real-time debate arena, multilingual voice AI chat, portfolio stress testing across historical market crashes, a whale tracker showing institutional block trades, sector pulse macro dashboard, regret simulator, and a gamified trading card collection system. Every AI-generated output across all screens carries a live model attribution badge — **Gemma ⚡** or **Claude 🧠** — making the agent layer visible and transparent throughout the entire user journey.
+
+### 05 — Problem Being Solved
+SEBI's own 2024 data reveals that **89% of retail F&O participants in India lose money.** India added 130 million new retail investors in four years — 80% of them under the age of 30. Every single one of them faces the same structural disadvantage:
+
+A hedge fund deploys 12 analysts running parallel research on every position simultaneously. A retail investor gets a price chart and a Telegram tip.
+
+This information asymmetry is not a gap — it is a chasm. Gen Z investors open Groww, see a wall of numbers, make an emotional decision, lose capital they cannot afford to lose, and leave the market permanently — taking with them decades of compounding potential.
+
+This is not a financial literacy problem. It is an **infrastructure problem**. No existing Indian fintech product has been architecturally designed to close it. VibeUp is that infrastructure.
+
+### 06 — Summary
+VibeUp is a multi-agent autonomous financial research system where **Gemma 4 powers a coordinated swarm of 6 specialized AI agents** that plan, reason across live data sources, retain memory across sessions, call external tools, and execute complex multi-step investment analysis workflows entirely without human intervention.
+
+From a user's perspective: a 21-year-old investor in Coimbatore opens the app, sees live NSE signals already classified by the Gemma 4 Signal Agent running in the background, asks AUREX *"should I buy Zomato?"* — and within 8 seconds receives a synthesized research report backed by parallel outputs from a Research Agent querying SEBI filings via RAG, a Sentiment Agent analyzing Reddit `r/IndiaInvestments`, and a Risk Agent evaluating portfolio concentration against their behavioral archetype — all orchestrated by a Gemma 4 Orchestrator that planned the workflow, delegated to sub-agents, and streamed the synthesis live.
+
+They can then trigger the 4-agent debate arena where GemmaBot (Gemma 4) argues retail sentiment alongside three Claude analyst agents — all streaming simultaneously.
+
+**Remove Gemma 4 from VibeUp and the product stops functioning. That is what it means for a model to be a core component.**
+
+### 07 — USP — Unique Selling Point
+VibeUp is the only retail fintech product in India running a genuine 7-agent autonomous AI pipeline — 6 Gemma 4 agents and 1 Claude Quant Agent — executing in true parallel via `asyncio.gather()` with:
+- 🟢 **Cross-session behavioral memory per user**
+- 🟢 **RAG over 2000+ SEBI filing and earnings transcript chunks**
+- 🟢 **Real-time NSE, yfinance, Reddit, and RSS tool access per agent**
+- 🟢 **Structured JSON output reliability via clean_json_response() parser**
+- 🟢 **Live model attribution badge on every single AI output in the UI**
+
+Competitors show dashboards. VibeUp shows a **live agent swarm doing real institutional research in real time**. The 4-agent debate arena — where GemmaBot streams alongside three Claude analysts simultaneously on any NSE ticker — is a demo moment no existing fintech product anywhere in the world can replicate.
+
+### 08 — Key Features
+#### 🤖 6-Agent Gemma 4 Autonomous Swarm
+The complete agent roster:
+| Agent | Role |
+|---|---|
+| **Orchestrator** | Plans workflow, delegates to sub-agents, synthesizes all outputs, manages memory |
+| **Signal Agent** | Classifies every NSE stock as ACT / WATCH / NOISE using price, volume, RSI, MACD, FII data |
+| **Research Agent** | Retrieves and synthesizes SEBI filings and earnings transcripts via RAG + pgvector |
+| **Sentiment Agent** | Computes retail vs institutional sentiment divergence from Reddit and RSS feeds |
+| **Risk Agent** | Evaluates trade suitability against user archetype, portfolio concentration, and horizon |
+| **GemmaBot** | Fourth parallel debate agent — crowd sentiment and retail positioning |
+| **Quant Agent (Claude)** | Monte Carlo stress modeling, Beta computation, CAGR — math-critical tasks only |
+
+#### ⚡ Live Signal Feed
+Every ACT / WATCH / NOISE signal card is classified by the Gemma 4 Signal Agent processing live NSE price, volume anomaly vs 90-day average, RSI (14), MACD, news summary, and FII flow in real time. Dozens of Gemma classifications execute continuously per session.
+
+#### ⚔️ 4-Agent Debate Arena
+GemmaBot + 3 Claude agents (ValueBot, QuantBot, MacroBot) stream simultaneously on any NSE ticker via parallel SSE — four independent AI perspectives, four live panels, zero blocking.
+
+#### 🧠 AUREX AI Co-Pilot
+Portfolio-aware conversational AI with smart routing — simple queries stream directly from Gemma in under 3 seconds, complex queries trigger the full Orchestrator pipeline. Multilingual voice output in Hindi, Tamil, Telugu, and English via ElevenLabs.
+
+#### 📊 RAG-Powered Research
+Research Agent retrieves top-5 semantically relevant SEBI filing chunks from pgvector and Gemma 4 synthesizes grounded investment thesis bullets with document citations on every stock pick.
+
+#### 🔥 Portfolio Stress Test
+Simulate user holdings through 5 historical crises — COVID Crash 2020, Global Financial Crisis 2008, Taper Tantrum 2013, Demonetization 2016, FII Exodus 2022 — with animated drawdown playback, per-holding vulnerability breakdown, and AUREX diagnosis streamed via SSE.
+
+#### 🐋 Whale Tracker
+Live NSE bulk deal feed, SEBI insider trading disclosures, FII/DII daily flow chart, AMFI mutual fund fresh buying — with Smart Money Consensus badge when FII and MF accumulation align on the same stock.
+
+#### 📊 Vibe Picks
+Daily personalized stock recommendations with Gemma 4-generated RAG-grounded thesis bullets, entry price, target, stop loss, upside percentage, and one-tap Groww deep-link execution.
+
+#### ⏰ Regret Simulator
+Enter any NSE stock, a hypothetical buy date, and an amount. Historical P&L animates, Gemma 4 generates a behavioral diagnosis and savage contextual tagline, and a shareable PNG card is produced.
+
+#### 🎴 Trading Card Collection
+Gamified stock discovery — cards unlock by interacting with stocks (signaling, debating, paper trading). Each card carries Volatility, Momentum, Fundamentals, and Vibe Rating stat bars with Gemma-generated flavor text. Common / Rare / Epic / Legendary rarity tiers.
+
+#### 📅 Vibe Wrapped
+Monthly financial story in 5 Gemma 4-generated swipeable narrative cards — word of month, portfolio numbers, best and worst call, behavioral diagnosis, and next month's personalized mission. Shareable to Instagram and Twitter.
+
+#### ⚡ VibeScore XP System
+Behavioral gamification rewarding patience, research-first decisions, and healthy portfolio behavior. XP awarded for signal research, long holds, stress testing. XP deducted for acting on NOISE signals and overriding warnings. 8 tiers from Broke Boy to VibeUp Legend.
+
+#### 🌐 Sector Pulse
+Recharts treemap sector heatmap, FII vs DII battle chart, commodity corner with NSE impact analysis, macro event calendar with earnings surprise prediction, global indices mood panel — all with Gemma 4 plain-English interpretations.
+
+### 09 — Tech Stack
+#### AI & Agent Layer
+| Component | Technology |
+|---|---|
+| **Primary Intelligence** | Gemma 4 (`gemma-4-31b-it` / `gemma-4-26b-a4b-it`) via Google AI Studio SDK |
+| **Agent Orchestration** | `asyncio.gather()` parallel execution + `GemmaAgentMemory` SQLite store |
+| **RAG Pipeline** | Supabase `pgvector` + OpenAI `text-embedding-3-small` + Gemma 4 reasoning |
+| **Fallback / Quant** | Claude Sonnet 4.6 (mathematical computation only) |
+| **Voice Output** | ElevenLabs `eleven_multilingual_v2` (EN, HI, TA, TE) |
+
+#### Backend
+| Component | Technology |
+|---|---|
+| **Framework** | FastAPI (Python 3.11+) |
+| **Database** | SQLAlchemy ORM + SQLite (`vibeup.db`) |
+| **Vector Store** | Supabase `pgvector` |
+| **Streaming** | Server-Sent Events (SSE) |
+| **Data Sources** | NSE India API, yfinance, BeautifulSoup4, Feedparser RSS |
+
+#### Frontend
+| Component | Technology |
+|---|---|
+| **Framework** | React 18 + Vite |
+| **Styling** | Tailwind CSS + Framer Motion |
+| **Charts** | TradingView Lightweight-Charts + Recharts |
+| **State** | Zustand |
+| **Utilities** | react-countup, canvas-confetti, html2canvas |
+
+#### Infrastructure
+| Component | Technology |
+|---|---|
+| **Frontend Deployment** | Vercel |
+| **Backend Deployment** | Render (`render.yaml` Blueprint) |
+| **Version Control** | GitHub (public repository) |
+
+### 10 — Future Scope
+- **Phase 1 — Intelligence Distribution (0–6 months)**: Open the Composite Momentum Score as a public API. Financial YouTubers, educators, and Telegram creators embed Gemma-generated signals in their content — zero CAC distribution across India's creator economy.
+- **Phase 2 — Execution Integration (6–18 months)**: SEBI Investment Adviser registration. Formal API partnerships with Groww and Zerodha replacing deep links with real portfolio sync — closing the execution loop and feeding live trade data back into the Gemma behavioral model, compounding accuracy over time.
+- **Phase 3 — On-Device Gemma Inference (12–24 months)**: Quantized Gemma running locally on Android via MediaPipe LLM Inference API — zero latency, complete privacy, no user financial data ever leaving the device. Critical for Tier-2 and Tier-3 investors with unreliable connectivity.
+- **Phase 4 — Institutional Data Licensing (18–36 months)**: Aggregated anonymized signal and behavioral data from millions of users becomes a licensed alternative data product sold to AMCs and institutional research desks. At 1 million users the dataset is worth more than subscription revenue — India's first retail-sourced quantitative alternative data vendor.
+
+---
+
 ## 📸 Core Visual Interfaces
 
 ### ⚔️ The War Room
