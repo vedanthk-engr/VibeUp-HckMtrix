@@ -6,6 +6,18 @@ Gemma 4 is not a feature in VibeUp. It is the engine. Every signal classified, e
 
 ---
 
+## 📌 Project Overview & Submission Info
+
+- **Project Title**: VibeUp: Multi-Agent Autonomous Financial Intelligence Engine
+- **Team Name**: Only Semi's
+- **Team Members**: Vedanth
+- **Live Demonstration Link**: [https://youtu.be/J6dfH6dNUqQ](https://youtu.be/J6dfH6dNUqQ)
+- **Presentation Deck (PPT)**: [VibeUp_HckMtrix.pptx](docs/VibeUp_HckMtrix.pptx)
+- **Live Application**: [https://vibe-up-bwg.vercel.app](https://vibe-up-bwg.vercel.app)
+- **Public GitHub Repository**: [https://github.com/vedanthk-engr/VibeUp-HckMtrix](https://github.com/vedanthk-engr/VibeUp-HckMtrix)
+
+---
+
 ## 📸 Core Visual Interfaces
 
 ### ⚔️ The War Room
@@ -455,6 +467,8 @@ India has **130 million retail investors**, **89% of F&O participants losing mon
 
 ## 🔗 Live Demo & Links
 
+- **Live Demonstration Link**: [https://youtu.be/J6dfH6dNUqQ](https://youtu.be/J6dfH6dNUqQ)
+- **Presentation Deck (PPT)**: [VibeUp_HckMtrix.pptx](docs/VibeUp_HckMtrix.pptx)
 - **Live Application**: [https://vibe-up-bwg.vercel.app](https://vibe-up-bwg.vercel.app)
-- **Public GitHub Repository**: [https://github.com/vedanthk-engr/VibeUp-BwG](https://github.com/vedanthk-engr/VibeUp-BwG)
+- **Public GitHub Repository**: [https://github.com/vedanthk-engr/VibeUp-HckMtrix](https://github.com/vedanthk-engr/VibeUp-HckMtrix)
 - **Backend Blueprint**: Configured via `render.yaml`
