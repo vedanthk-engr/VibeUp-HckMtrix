@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-headline: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-bg-base: #fcf9f8;
+  --color-bg-darker: #1c1b1b;
+  --color-bg-cream: #faf7f2;
+  
+  --color-groww-green: #00d09c;
+  --color-cyber-cyan: #7dd3fc;
+  --color-cyber-violet: #7c3aed;
+  
+  --color-rainbow-1: #b4136d;
+  --color-rainbow-2: #7c3aed;
+  --color-rainbow-3: #fd56a7;
+  --color-rainbow-4: #ffb690;
+  --color-rainbow-5: #fde047;
+  
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-float-mascot: float-mascot 4s ease-in-out infinite;
+  --animate-pulse-star: pulse-star 3s ease-in-out infinite;
+  --animate-liquid-flow: liquid-flow 1s linear infinite;
+  --animate-float-up: float-up 10s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes float-mascot {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+  @keyframes pulse-star {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+  }
+  @keyframes liquid-flow {
+    from { stroke-dashoffset: 40; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes float-up {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    20% { opacity: 1; transform: translateY(80vh) scale(1); }
+    80% { opacity: 1; }
+    100% { transform: translateY(-20vh) scale(1.5) rotate(180deg); opacity: 0; }
+  }
+}
+
+/* Custom Base Styles */
+html, body {
+  background-color: #fcf9f8;
+  color: #1c1b1b;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fcf9f8;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf7f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c1b1b;
+  border: 2px solid #faf7f2;
+  border-radius: 9999px;
+}
+
+/* Neo-Brutalist design presets */
+.doodle-border {
+  background-color: #ffffff;
+  border: 3px solid #1c1b1b;
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px 0px #1c1b1b;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.doodle-border:hover {
+  transform: translate(-2px, -2px) rotate(0.5deg);
+  box-shadow: 8px 8px 0px 0px #1c1b1b;
+}
+
+.sticker-card {
+  background-color: #ffffff;
+  border: 3px solid #1c1b1b;
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px 0px #1c1b1b;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chunky-btn {
+  background-color: #ffffff;
+  color: #1c1b1b;
+  border: 3px solid #1c1b1b;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-family: var(--font-headline);
+  box-shadow: 4px 4px 0px 0px #1c1b1b;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.chunky-btn:hover {
+  background-color: #fde047;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #1c1b1b;
+}
+
+.chunky-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #1c1b1b;
+}
+
+.rainbow-ribbon {
+  background: linear-gradient(135deg, #fd56a7 0%, #7c3aed 25%, #630ed4 50%, #b4136d 75%, #ffb0cd 100%);
+  background-size: 200% auto;
+  animation: gradientFlow 5s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ticker text styling */
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: #1c1b1b;
+  color: #ffffff;
+  border-bottom: 3px solid #1c1b1b;
+  padding: 8px 0;
+}
+
+.ticker-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 25s linear infinite;
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.up-arrow { color: #fd56a7; }
+.down-arrow { color: #7dd3fc; }
+
+.star-doodle {
+  animation: pulse-star 3s ease-in-out infinite;
+}
+
+.mascot-doodle {
+  animation: float-mascot 4s ease-in-out infinite;
+}
+
+.liquid-pipe {
+  stroke-dasharray: 10 10;
+  animation: liquid-flow 1s linear infinite;
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Holographic Trading Card effects */
+.holographic-shine {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 200% 200%;
+  animation: holoShine 3s infinite linear;
+}
+
+@keyframes holoShine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.holo-card-legendary {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-card-legendary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 226, 89, 0.2) 0%,
+    rgba(255, 167, 81, 0.2) 30%,
+    rgba(124, 58, 237, 0.2) 60%,
+    rgba(253, 86, 167, 0.2) 100%
+  );
+  background-size: 300% 300%;
+  animation: holoGradient 5s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.holo-card-epic {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-card-epic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(167, 139, 250, 0.2) 0%,
+    rgba(236, 72, 153, 0.2) 50%,
+    rgba(59, 130, 246, 0.2) 100%
+  );
+  background-size: 300% 300%;
+  animation: holoGradient 5s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes holoGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
