@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bull vs Bear Debate Arena</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&amp;family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "primary-fixed": "#eaddff",
+                "on-primary-fixed-variant": "#5a00c6",
+                "inverse-surface": "#313030",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-container": "#ffdecf",
+                "on-primary-container": "#ede0ff",
+                "on-surface": "#1c1b1b",
+                "on-secondary-container": "#600037",
+                "secondary-container": "#fd56a7",
+                "on-secondary": "#ffffff",
+                "inverse-on-surface": "#f3f0ef",
+                "tertiary": "#843700",
+                "surface-container-low": "#f6f3f2",
+                "surface-bright": "#fcf9f8",
+                "surface": "#fcf9f8",
+                "secondary-fixed": "#ffd9e4",
+                "surface-container-high": "#eae7e7",
+                "primary-fixed-dim": "#d2bbff",
+                "outline": "#7b7487",
+                "tertiary-fixed-dim": "#ffb690",
+                "on-error": "#ffffff",
+                "tertiary-fixed": "#ffdbca",
+                "on-surface-variant": "#4a4455",
+                "on-secondary-fixed": "#3e0022",
+                "on-tertiary-fixed-variant": "#783200",
+                "primary-container": "#7c3aed",
+                "surface-tint": "#732ee4",
+                "outline-variant": "#ccc3d8",
+                "error": "#ba1a1a",
+                "on-primary-fixed": "#25005a",
+                "error-container": "#ffdad6",
+                "on-primary": "#ffffff",
+                "surface-container": "#f0eded",
+                "on-tertiary": "#ffffff",
+                "primary": "#630ed4",
+                "on-tertiary-fixed": "#341100",
+                "secondary-fixed-dim": "#ffb0cd",
+                "on-background": "#1c1b1b",
+                "tertiary-container": "#aa4900",
+                "background": "#fcf9f8",
+                "secondary": "#b4136d",
+                "on-secondary-fixed-variant": "#8c0053",
+                "on-error-container": "#93000a",
+                "inverse-primary": "#d2bbff",
+                "surface-variant": "#e5e2e1",
+                "surface-dim": "#dcd9d9",
+                "surface-container-highest": "#e5e2e1",
+                "vibe-bull": "#10b981",
+                "vibe-bear": "#ef4444"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "ribbon-width": "48px",
+                "margin-mobile": "16px",
+                "unit": "4px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "headline-sm": [
+                        "spaceGrotesk"
+                ],
+                "display-lg-mobile": [
+                        "Syne"
+                ],
+                "display-lg": [
+                        "Syne"
+                ],
+                "display-xl": [
+                        "Syne"
+                ],
+                "ticker-data": [
+                        "jetbrainsMono"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "spaceGrotesk"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-sm": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "40px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "800"
+                        }
+                ],
+                "display-lg": [
+                        "56px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-xl": [
+                        "80px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "ticker-data": [
+                        "16px",
+                        {
+                                "lineHeight": "1.0",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "500"
+                        }
+                ]
+        },
+        animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+        },
+        keyframes: {
+            float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+            }
+        }
+},
+    },
+  }
+</script>
+<style>
+        .sticker-card {
+            background-color: #ffffff;
+            border: 4px solid #1a1a1a;
+            border-radius: 1.5rem;
+            box-shadow: 8px 8px 0px 0px rgba(26,26,26,1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sticker-card:hover {
+            transform: translate(-4px, -4px) rotate(0deg) !important;
+            box-shadow: 12px 12px 0px 0px rgba(26,26,26,1);
+        }
+        .chunky-btn {
+            background-color: #ffffff;
+            border: 4px solid #1a1a1a;
+            color: #1a1a1a;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 8px 8px 0px 0px rgba(26,26,26,1);
+            transition: all 0.1s;
+        }
+        .chunky-btn:active {
+            transform: translate(4px, 4px) !important;
+            box-shadow: 0px 0px 0px 0px rgba(26,26,26,1) !important;
+        }
+        .rainbow-arc {
+            background: linear-gradient(180deg, #fd56a7 0%, #7c3aed 33%, #630ed4 66%, #ffb0cd 100%);
+            border-bottom: 4px solid #1a1a1a;
+        }
+        .pipe-path {
+            stroke: #1a1a1a;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawPipe 2s ease forwards;
+        }
+        @keyframes drawPipe {
+            to { stroke-dashoffset: 0; }
+        }
+        .typewriter-text {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen relative overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Ticker Bar -->
+<div class="fixed top-0 w-full bg-[#1a1a1a] text-white overflow-hidden relative z-[60]">
+<div class="whitespace-nowrap py-3 flex items-center font-ticker-data text-ticker-data animate-marquee w-[200%]">
+<span class="mx-6 text-[#fd56a7] font-bold text-lg">$TSLA <span class="text-vibe-bull">▲ 4.2%</span></span>
+<span class="mx-6 text-[#7c3aed] font-bold text-lg">$AAPL <span class="text-vibe-bull">▲ 1.1%</span></span>
+<span class="mx-6 text-[#ffb0cd] font-bold text-lg">$META <span class="text-vibe-bear">▼ 0.8%</span></span>
+<span class="mx-6 text-[#d2bbff] font-bold text-lg">$NVDA <span class="text-vibe-bull">▲ 5.6%</span></span>
+<span class="mx-6 text-[#630ed4] font-bold text-lg">$MSFT <span class="text-vibe-bull">▲ 2.3%</span></span>
+<span class="mx-6 text-[#10b981] font-bold text-lg">$AMZN <span class="text-vibe-bear">▼ 1.4%</span></span>
+<span class="mx-6 text-[#fd56a7] font-bold text-lg">$TSLA <span class="text-vibe-bull">▲ 4.2%</span></span>
+<span class="mx-6 text-[#7c3aed] font-bold text-lg">$AAPL <span class="text-vibe-bull">▲ 1.1%</span></span>
+<span class="mx-6 text-[#ffb0cd] font-bold text-lg">$META <span class="text-vibe-bear">▼ 0.8%</span></span>
+<span class="mx-6 text-[#d2bbff] font-bold text-lg">$NVDA <span class="text-vibe-bull">▲ 5.6%</span></span>
+<span class="mx-6 text-[#630ed4] font-bold text-lg">$MSFT <span class="text-vibe-bull">▲ 2.3%</span></span>
+<span class="mx-6 text-[#10b981] font-bold text-lg">$AMZN <span class="text-vibe-bear">▼ 1.4%</span></span>
+</div>
+</div>
+<!-- Background Sweeping Ribbons & Doodles -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<!-- Wavy Ribbon 1 -->
+<svg class="absolute top-[-10%] left-[-10%] w-[120%] h-[50%] opacity-20" preserveaspectratio="none" viewbox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,160L48,170.7C96,181,192,203,288,186.7C384,171,480,117,576,96C672,75,768,85,864,117.3C960,149,1056,203,1152,224C1248,245,1344,235,1392,229.3L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z" fill="#7c3aed"></path>
+</svg>
+<!-- Wavy Ribbon 2 -->
+<svg class="absolute bottom-[-10%] right-[-10%] w-[120%] h-[60%] opacity-20 transform rotate-180" preserveaspectratio="none" viewbox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z" fill="#fd56a7"></path>
+</svg>
+<!-- Hand-drawn Star Doodle -->
+<svg class="absolute top-[20%] left-[10%] w-16 h-16 opacity-40 animate-pulse-slow" fill="none" stroke="#1a1a1a" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Hand-drawn Sparkle Doodle -->
+<svg class="absolute bottom-[30%] right-[15%] w-12 h-12 opacity-50 animate-float" fill="none" stroke="#630ed4" stroke-width="4" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2v20M2 12h20" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="12" cy="12" fill="#fd56a7" r="3"></circle>
+</svg>
+<!-- Mascot Doodle -->
+<svg class="absolute bottom-10 left-1/4 w-24 h-24 opacity-30" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" fill="none" r="40" stroke="#1a1a1a" stroke-width="4"></circle>
+<circle cx="35" cy="40" fill="#1a1a1a" r="5"></circle>
+<circle cx="65" cy="40" fill="#1a1a1a" r="5"></circle>
+<path d="M30 60 Q50 80 70 60" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+<!-- Top Navigation Placeholder (TopAppBar) -->
+<header class="hidden md:flex flex-col w-full z-50 fixed border-b-4 border-on-background bg-background/90 backdrop-blur-md top-12">
+<div class="flex items-center justify-between px-margin-desktop py-4">
+<div class="font-display-xl text-5xl md:text-6xl font-black text-primary tracking-tight italic" style="-webkit-text-stroke: 2px #1a1a1a; color: #7c3aed;">
+                VibeUp
+            </div>
+<nav class="flex gap-8">
+<a class="text-on-surface-variant font-bold hover:text-secondary transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant font-bold hover:text-secondary transition-colors duration-300" href="#">Market</a>
+<a class="text-primary font-black border-b-4 border-primary hover:text-secondary transition-colors duration-300" href="#">Vibe Check</a>
+</nav>
+<div class="flex gap-4">
+<button class="hover:text-secondary transition-colors duration-300 scale-95 active:duration-100"><span class="material-symbols-outlined text-3xl">mic</span></button>
+<button class="hover:text-secondary transition-colors duration-300 scale-95 active:duration-100"><span class="material-symbols-outlined text-3xl">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Side Navigation Placeholder (SideNavBar) -->
+<aside class="hidden md:flex flex-col py-8 z-40 bg-surface-container-lowest h-screen w-24 md:w-64 fixed left-0 top-12 rounded-r-lg border-r-4 border-on-background shadow-[8px_0px_0px_0px_rgba(26,26,26,1)]">
+<div class="px-6 mb-8 mt-16">
+<div class="font-display-xl text-4xl font-black text-primary mb-2 italic" style="-webkit-text-stroke: 1px #1a1a1a; color: #7c3aed;">VibeUp</div>
+<div class="text-sm font-bold text-on-surface-variant">Your Wealth, Your Vibe</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="text-on-surface-variant font-bold flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform border-4 border-transparent hover:border-on-background" href="#">
+<span class="material-symbols-outlined">grid_view</span> <span class="hidden md:inline text-body-lg font-bold">Home</span>
+</a>
+<a class="text-on-surface-variant font-bold flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform border-4 border-transparent hover:border-on-background" href="#">
+<span class="material-symbols-outlined">trending_up</span> <span class="hidden md:inline text-body-lg font-bold">Market</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container font-black rounded-xl mx-2 flex items-center gap-4 p-4 translate-x-1 transition-transform border-4 border-on-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]" href="#">
+<span class="material-symbols-outlined">auto_awesome</span> <span class="hidden md:inline text-body-lg font-black">Vibe Check</span>
+</a>
+</nav>
+<div class="p-4 mx-2 mt-auto">
+<button class="w-full chunky-btn bg-primary text-on-primary border-4 border-on-background shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(26,26,26,1)] text-xl">Invest Now</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-32 md:pt-48 pb-24 min-h-screen relative flex flex-col items-center">
+<!-- Search Bar - Machine Part -->
+<div class="w-full max-w-2xl px-4 z-10 relative mt-8">
+<div class="sticker-card p-2 flex items-center bg-surface-container-lowest border-4 border-on-background rounded-full relative z-20">
+<span class="material-symbols-outlined ml-6 text-on-background font-bold text-3xl">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-headline-sm font-display-lg outline-none px-4 py-3 placeholder:text-outline placeholder:font-body-md text-primary font-bold" placeholder="Search a ticker (e.g. AAPL)..." type="text" value="$TSLA"/>
+<button class="chunky-btn bg-secondary-container text-on-secondary-container !py-3 !px-8 text-xl rounded-full mr-2">Scan</button>
+</div>
+<!-- Pipe Machinery connecting search to cards -->
+<svg class="absolute top-full left-1/2 transform -translate-x-1/2 w-[120%] h-40 md:h-56 -z-10 overflow-visible pointer-events-none" viewbox="0 0 600 250">
+<!-- Left Pipe (Bull) -->
+<path class="pipe-path" d="M 300 0 L 300 80 Q 300 100 270 100 L 100 100 Q 70 100 70 130 L 70 230"></path>
+<rect fill="#1a1a1a" height="12" width="24" x="288" y="40"></rect>
+<circle cx="70" cy="230" fill="#10b981" r="12" stroke="#1a1a1a" stroke-width="4"></circle>
+<!-- Right Pipe (Bear) -->
+<path class="pipe-path" d="M 300 0 L 300 80 Q 300 100 330 100 L 500 100 Q 530 100 530 130 L 530 230" style="animation-delay: 0.2s;"></path>
+<rect fill="#1a1a1a" height="12" width="24" x="288" y="60"></rect>
+<circle cx="530" cy="230" fill="#ef4444" r="12" stroke="#1a1a1a" stroke-width="4"></circle>
+<!-- Central Valve -->
+<circle cx="300" cy="90" fill="#fcf9f8" r="24" stroke="#1a1a1a" stroke-width="4"></circle>
+<circle cx="300" cy="90" fill="#1a1a1a" r="8"></circle>
+<path d="M 276 90 L 324 90 M 300 66 L 300 114" stroke="#1a1a1a" stroke-width="4"></path>
+</svg>
+</div>
+<!-- VS Arena -->
+<div class="w-full max-w-6xl px-4 mt-16 md:mt-40 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 z-10 relative">
+<!-- Left Panel (Bull) -->
+<div class="sticker-card flex-1 w-full p-6 md:p-8 relative bg-white border-4 border-on-background rotate-[-4deg] z-10" style="animation-delay: 0s;">
+<div class="absolute -top-8 -left-8 bg-vibe-bull text-white w-20 h-20 rounded-full flex items-center justify-center border-4 border-on-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] rotate-[-15deg] z-20">
+<span class="material-symbols-outlined text-4xl font-bold">trending_up</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-vibe-bull mb-6 stroke-on-background relative z-20" style="-webkit-text-stroke: 2px #1a1a1a;">The Bull Case</h2>
+<div class="font-ticker-data text-ticker-data text-on-surface-variant bg-surface-container-low p-6 rounded-2xl border-4 border-on-background h-40 flex items-start overflow-hidden relative shadow-[inset_4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+<p class="typewriter-text m-0 text-lg font-bold">"Strong earnings beat projected..."</p>
+</div>
+<div class="mt-8 border-4 border-on-background p-4 rounded-xl bg-surface-bright relative">
+<div class="absolute -top-4 left-4 bg-surface-bright px-3 py-1 font-display-sm text-sm font-black border-4 border-on-background rounded-md shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] rotate-[-3deg]">GAUGE</div>
+<div class="flex justify-between text-xl mb-2 font-display-lg text-on-background mt-2">
+<span>Confidence</span>
+<span class="text-vibe-bull font-black">85%</span>
+</div>
+<div class="h-8 bg-surface-variant rounded-full overflow-hidden border-4 border-on-background relative">
+<div class="h-full bg-vibe-bull w-[85%] rounded-r-full shadow-[inset_0_-4px_0px_rgba(0,0,0,0.2)] border-r-4 border-on-background"></div>
+<!-- Gauge ticks -->
+<div class="absolute inset-0 flex justify-between px-2 opacity-50 pointer-events-none">
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+</div>
+</div>
+</div>
+<button class="chunky-btn w-full mt-8 bg-vibe-bull text-white text-2xl py-4 hover:bg-[#059669]">Vote Bull</button>
+</div>
+<!-- Center VS -->
+<div class="font-display-xl text-[140px] text-primary animate-pulse-slow my-12 md:my-0 flex-shrink-0 relative z-30 italic transform rotate-[-5deg] drop-shadow-[12px_12px_0_#1a1a1a]" style="-webkit-text-stroke: 6px #1a1a1a;">
+                VS
+            </div>
+<!-- Right Panel (Bear) -->
+<div class="sticker-card flex-1 w-full p-6 md:p-8 relative bg-white border-4 border-on-background rotate-[5deg] z-10" style="animation-delay: 1s;">
+<div class="absolute -top-8 -right-8 bg-vibe-bear text-white w-20 h-20 rounded-full flex items-center justify-center border-4 border-on-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] rotate-[15deg] z-20">
+<span class="material-symbols-outlined text-4xl font-bold">trending_down</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-vibe-bear mb-6 text-right relative z-20" style="-webkit-text-stroke: 2px #1a1a1a;">The Bear Case</h2>
+<div class="font-ticker-data text-ticker-data text-on-surface-variant bg-surface-container-low p-6 rounded-2xl border-4 border-on-background h-40 flex items-start overflow-hidden relative justify-end text-right shadow-[inset_4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+<p class="typewriter-text m-0 text-lg font-bold" style="animation-delay: 1s; border-right: none; border-left: .15em solid orange;">"...supply chain headwinds persist."</p>
+</div>
+<div class="mt-8 border-4 border-on-background p-4 rounded-xl bg-surface-bright relative">
+<div class="absolute -top-4 right-4 bg-surface-bright px-3 py-1 font-display-sm text-sm font-black border-4 border-on-background rounded-md shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] rotate-[4deg]">GAUGE</div>
+<div class="flex justify-between text-xl mb-2 font-display-lg text-on-background mt-2">
+<span class="text-vibe-bear font-black">42%</span>
+<span>Confidence</span>
+</div>
+<div class="h-8 bg-surface-variant rounded-full overflow-hidden border-4 border-on-background flex justify-end relative">
+<div class="h-full bg-vibe-bear w-[42%] rounded-l-full shadow-[inset_0_-4px_0px_rgba(0,0,0,0.2)] border-l-4 border-on-background"></div>
+<!-- Gauge ticks -->
+<div class="absolute inset-0 flex justify-between px-2 opacity-50 pointer-events-none">
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+<div class="w-1.5 h-full bg-on-background"></div>
+</div>
+</div>
+</div>
+<button class="chunky-btn w-full mt-8 bg-vibe-bear text-white text-2xl py-4 hover:bg-[#dc2626]">Vote Bear</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Placeholder (BottomNavBar) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl border-t-4 border-on-background shadow-[0_-8px_0px_rgba(26,26,26,1)]">
+<a class="flex flex-col items-center text-on-surface-variant font-bold tap-highlight-transparent active:scale-90 hover:text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-body-md font-bold text-xs mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant font-bold tap-highlight-transparent active:scale-90 hover:text-primary" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-body-md font-bold text-xs mt-1">Market</span>
+</a>
+<a class="flex flex-col items-center text-secondary font-black scale-110 tap-highlight-transparent active:scale-90 hover:text-primary bg-secondary-container p-2 rounded-xl border-4 border-on-background shadow-[4px_4px_0_#1a1a1a] -translate-y-4" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-body-md font-black text-xs mt-1">Vibe Check</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant font-bold tap-highlight-transparent active:scale-90 hover:text-primary" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-body-md font-bold text-xs mt-1">Social</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant font-bold tap-highlight-transparent active:scale-90 hover:text-primary" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-body-md font-bold text-xs mt-1">Me</span>
+</a>
+</nav>
+<!-- Floating Invest Now Mobile -->
+<div class="md:hidden fixed bottom-24 left-4 z-40">
+<button class="chunky-btn bg-primary text-on-primary border-4 border-on-background shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-5deg] hover:rotate-0 text-xl py-3 px-6">Invest Now</button>
+</div>
+<script>
+        // Simple confetti effect for voting buttons
+        const voteButtons = document.querySelectorAll('button[class*="Vote"]');
+        
+        voteButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                this.classList.add('scale-105');
+                setTimeout(() => {
+                    this.classList.remove('scale-105');
+                }, 200);
+                
+                for(let i=0; i<15; i++) {
+                    createConfetti(e.clientX, e.clientY, this.classList.contains('bg-vibe-bull') ? '#10b981' : '#ef4444');
+                }
+            });
+        });
+
+        function createConfetti(x, y, color) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = x + 'px';
+            confetti.style.top = y + 'px';
+            confetti.style.width = '16px';
+            confetti.style.height = '16px';
+            confetti.style.backgroundColor = color;
+            confetti.style.border = '3px solid #1a1a1a'; 
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0'; 
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            document.body.appendChild(confetti);
+
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 8 + Math.random() * 12;
+            const tx = Math.cos(angle) * velocity * 25;
+            const ty = Math.sin(angle) * velocity * 25;
+            const rot = Math.random() * 360;
+
+            confetti.animate([
+                { transform: 'translate(0,0) scale(1) rotate(0deg)', opacity: 1 },
+                { transform: `translate(${tx}px, ${ty}px) scale(0) rotate(${rot}deg)`, opacity: 0 }
+            ], {
+                duration: 1200 + Math.random() * 1000,
+                easing: 'cubic-bezier(0, .9, .57, 1)'
+            }).onfinish = () => confetti.remove();
+        }
+    </script>
+</body></html>

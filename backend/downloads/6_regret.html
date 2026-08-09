@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Regret Simulator - VibeUp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "tertiary-container": "#aa4900",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "outline": "#7b7487",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed": "#eaddff",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "primary": "#630ed4",
+                        "secondary-container": "#fd56a7",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed": "#3e0022",
+                        "on-secondary-container": "#600037",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#732ee4",
+                        "secondary": "#b4136d",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#ccc3d8",
+                        "on-surface-variant": "#4a4455",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#d2bbff",
+                        "on-primary-container": "#ede0ff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffdecf",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#843700",
+                        "on-error": "#ffffff",
+                        "positive": "#10b981",
+                        "negative": "#ef4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "ribbon-width": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Syne"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Space Grotesk"],
+                        "display-xl": ["Syne"],
+                        "display-lg-mobile": ["Syne"],
+                        "body-lg": ["Inter"],
+                        "ticker-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "ticker-data": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f8; /* background */
+            color: #1c1b1b; /* on-background */
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Zine Specific Styles */
+        .sticker-shadow { 
+            box-shadow: 8px 8px 0px 0px rgba(28,27,27,1); 
+            border: 4px solid #1c1b1b;
+        }
+        .btn-shadow { 
+            box-shadow: 6px 6px 0px 0px rgba(28,27,27,1); 
+            border: 4px solid #1c1b1b;
+        }
+        .btn-shadow:active { 
+            box-shadow: 0px 0px 0px 0px rgba(28,27,27,1); 
+            transform: translate(6px, 6px); 
+        }
+
+        .doodle-bg {
+            background-image: radial-gradient(#1c1b1b 1px, transparent 1px), radial-gradient(#1c1b1b 1px, transparent 1px);
+            background-position: 0 0, 20px 20px;
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+
+        .ticker-scroll {
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .ribbon-bg {
+            background: linear-gradient(135deg, #630ed4 0%, #b4136d 25%, #fd56a7 50%, #ffb690 75%, #ffdbca 100%);
+            background-size: 200% 200%;
+            animation: ribbonFlow 10s ease infinite;
+        }
+        @keyframes ribbonFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .organic-pipe {
+            stroke-dasharray: 10 10;
+            animation: flow 20s linear infinite;
+        }
+        @keyframes flow {
+            to { stroke-dashoffset: -100; }
+        }
+
+        /* Thick Input */
+        .thick-input {
+            border: 4px solid #1c1b1b;
+            border-radius: 1rem;
+            background-color: #ffffff;
+            padding: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px 0px rgba(28,27,27,1);
+        }
+        .thick-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 6px 6px 0px 0px rgba(28,27,27,1);
+            transform: translate(-2px, -2px);
+        }
+
+        /* Hide scrollbar for Recharts container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .portal-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background min-h-screen flex flex-col items-center pb-24 md:pb-0 relative overflow-hidden">
+<!-- Top Marquee Ticker -->
+<div class="w-full overflow-hidden border-b-[4px] border-on-background bg-on-background py-3 z-50 absolute top-0 left-0">
+<div class="whitespace-nowrap ticker-scroll flex gap-8 font-ticker-data text-ticker-data items-center font-bold text-lg">
+<span class="text-positive">AAPL +1.2%</span>
+<span class="material-symbols-outlined text-sm text-secondary">star</span>
+<span class="text-negative">TSLA -0.5%</span>
+<span class="material-symbols-outlined text-sm text-primary">star</span>
+<span class="text-positive">VIBE +42.0%</span>
+<span class="material-symbols-outlined text-sm text-tertiary">star</span>
+<span class="text-surface-bright">SPY +0.1%</span>
+<span class="material-symbols-outlined text-sm text-secondary">star</span>
+<span class="text-positive">NIFTY +0.8%</span>
+<span class="material-symbols-outlined text-sm text-primary">star</span>
+<span class="text-negative">TSLA -0.5%</span>
+</div>
+</div>
+<!-- Dense Background Doodles & Pattern -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden doodle-bg"></div>
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-60">
+<!-- Rainbow Sweeps -->
+<div class="absolute top-[-10%] left-[-10%] w-[120%] h-64 ribbon-bg opacity-40 transform -rotate-12 blur-3xl"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[120%] h-96 ribbon-bg opacity-30 transform rotate-45 blur-3xl"></div>
+<!-- Stars and Doodles -->
+<svg class="absolute top-32 left-1/4 w-12 h-12 text-secondary rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="absolute top-64 right-1/4 w-16 h-16 text-primary rotate-45 opacity-60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"></path></svg>
+<svg class="absolute bottom-40 left-10 w-20 h-20 text-tertiary-container -rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<!-- Factory Pipes / Organic Connections Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-[-1] hidden md:block mt-16" preserveaspectratio="none">
+<path class="text-on-background organic-pipe" d="M 0,150 C 200,150 150,300 400,300" fill="none" stroke="currentColor" stroke-width="6"></path>
+<circle cx="100" cy="150" fill="#ffb690" r="12" stroke="#1c1b1b" stroke-width="4"></circle>
+<path class="text-on-background organic-pipe" d="M 800,50 Q 900,100 900,400 T 1000,600" fill="none" stroke="currentColor" stroke-width="8"></path>
+<rect fill="#630ed4" height="20" stroke="#1c1b1b" stroke-width="4" transform="rotate(15 800 50)" width="20" x="790" y="40"></rect>
+</svg>
+<main class="w-full max-w-4xl px-4 md:px-margin-desktop pt-24 pb-12 relative z-10 flex flex-col items-center min-h-screen justify-center mt-12">
+<!-- Portal Shader Background -->
+<div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+<div class="w-[800px] h-[800px] opacity-40">
+                {{DATA:ANIMATION:ANIMATION_SHADER}}
+            </div>
+</div>
+<!-- Header -->
+<header class="text-center mb-12 relative z-10 transform -rotate-1">
+<h1 class="font-display-xl text-5xl md:text-7xl font-extrabold text-on-background tracking-tighter uppercase drop-shadow-[4px_4px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2">
+                Regret Simulator <span class="material-symbols-outlined text-6xl align-middle text-secondary">alarm</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-lg mx-auto mt-4 font-bold bg-surface-container-lowest px-4 py-2 border-[3px] border-on-background sticker-shadow transform rotate-1 inline-block">
+                Time travel to see what could have been. Enter the stock, the date, and let the vibes (and math) do the rest.
+            </p>
+<!-- Floating Vibe Mascot Element -->
+<img class="absolute -top-16 -right-16 w-40 h-40 rotate-12 drop-shadow-[4px_4px_0px_rgba(28,27,27,1)] hidden md:block" data-alt="A small, retro-cartoon style doodle of a sad ghost holding a tiny chart that is going down. Hand-drawn 70s sticker book aesthetic, thick black outlines, simple flat colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdQbmsV4T-o5jTMviGIOQu4ripgYFgtWPGFHrJ1xaFMNnZb48hjjMSHZx0PDKmW1FmrkAs1eEIcYARUJI9p0qIfheRh27ynbzrD5XwHf6KHbdr9r9EmEbTwiVrBLLUE6h3w8vY1l5c1Ot4Kk6MhHGegGoAvHpkIRs6nYg4fXAKBNT6h-w1tXxjas00RcC3WKSZe4vVWHvILKGMIADSoULgYkKzA96mcfx35Xj9zvy4O-PMysjFRJpTh3TZeWgxuIiAPL36B98DeBBO"/>
+</header>
+<!-- Input Section -->
+<section class="w-full max-w-2xl bg-surface-container-lowest sticker-shadow p-8 md:p-12 mb-16 relative z-10 transform rotate-[1deg]" id="input-section">
+<form class="flex flex-col gap-8" id="simulator-form">
+<div class="flex flex-col gap-3">
+<label class="font-headline-sm text-on-background font-bold text-2xl uppercase tracking-tight" for="stock-input">Which stock haunts you? 👻</label>
+<input class="thick-input w-full text-xl" id="stock-input" placeholder="e.g., AAPL, TSLA" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-3">
+<label class="font-headline-sm text-on-background font-bold text-xl uppercase tracking-tight" for="date-input">When did you skip it?</label>
+<input class="thick-input w-full" id="date-input" required="" type="date"/>
+</div>
+<div class="flex flex-col gap-3">
+<label class="font-headline-sm text-on-background font-bold text-xl uppercase tracking-tight" for="amount-input">How much ($)?</label>
+<input class="thick-input w-full" id="amount-input" placeholder="1000" required="" type="number"/>
+</div>
+</div>
+<button class="bg-secondary-container text-surface-container-lowest font-display-lg text-2xl font-extrabold uppercase py-5 px-10 rounded-full btn-shadow mt-6 flex items-center justify-center gap-3 mx-auto w-full md:w-auto transform -rotate-1 hover:bg-primary transition-all duration-200" onclick="runSimulation()" type="button">
+                    RUN THE SIMULATION 🔮
+                </button>
+</form>
+</section>
+<!-- Results Section (Hidden initially) -->
+<section class="w-full flex flex-col items-center hidden opacity-0 transition-opacity duration-1000 z-10" id="results-section">
+<!-- The Big Number Reveal -->
+<div class="text-center mb-12 relative">
+<div class="bg-surface-container-lowest px-6 py-2 border-[4px] border-on-background sticker-shadow transform -rotate-2 mb-6 inline-block">
+<p class="font-headline-sm text-on-background uppercase tracking-tight font-bold">If you invested then, you'd have...</p>
+</div>
+<div class="font-display-xl text-7xl md:text-[100px] text-primary drop-shadow-[6px_6px_0px_#1c1b1b] tracking-tighter font-extrabold bg-surface-container-lowest border-[4px] border-on-background px-8 py-4 sticker-shadow transform rotate-1" id="big-number">
+                    +$0
+                </div>
+<!-- Mascot Reaction -->
+<img class="absolute -right-20 md:-right-40 top-0 w-32 h-32 md:w-56 md:h-56 -rotate-12 z-20 hidden md:block drop-shadow-[4px_4px_0px_rgba(28,27,27,1)]" data-alt="A cartoon character drawn in a groovy 70s style, looking incredibly shocked and dramatic with hands on face, money flying around. Thick sticker outlines, pastel colors." id="mascot-reaction" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCna4pYfTcPJMMKoVIPoLtaNH7UWAGeQK5tYusHqoKh2e0wmasLBX2iRSMJzDvfVSX3GTaT0F0b6eVpl6S-mE7hgTAus3_pA-KKYLvMhLxGJiZXxYALnsmSt2dX7WJCUNT3xf8NtFkv7zcAIAEL6ZqWWgT3v1LscedPgR0jzkvDE6mX1L81x1DywKGEvDnBGd-NJbbs6nyrqYzU2qRVAzvD938zylBSRqPogR_8tQJce79FPm-wCfSVE7bcbN9liC5_4maqFGETMUIT"/>
+</div>
+<!-- AI Insight -->
+<div class="bg-primary-fixed text-on-primary-fixed rounded-xl p-6 mb-12 sticker-shadow font-headline-sm text-xl max-w-2xl text-center font-bold transform -rotate-1 relative">
+<div class="absolute -top-4 -left-4 w-12 h-8 bg-secondary border-[3px] border-on-background transform -rotate-12 mix-blend-multiply opacity-80 z-10"></div>
+                "Ouch. That hurts. But hey, hindsight is 20/20. You probably bought avocado toast instead, which was also a solid investment in your happiness."
+            </div>
+<!-- Chart Container for React -->
+<div class="w-full max-w-4xl bg-surface-container-lowest sticker-shadow p-6 md:p-8 mb-16 h-[450px] transform rotate-[0.5deg]" id="chart-root">
+<!-- React Recharts will mount here -->
+</div>
+<!-- Stats Pills Row -->
+<div class="flex flex-wrap justify-center gap-6 mb-16">
+<div class="border-[4px] border-on-background bg-secondary-fixed rounded-2xl px-6 py-4 flex items-center gap-3 sticker-shadow transform hover:-translate-y-2 transition-transform -rotate-1">
+<span class="material-symbols-outlined text-secondary font-bold text-3xl">trending_up</span>
+<span class="font-ticker-data text-on-background font-extrabold text-xl">+450% Total Return</span>
+</div>
+<div class="border-[4px] border-on-background bg-tertiary-fixed rounded-2xl px-6 py-4 flex items-center gap-3 sticker-shadow transform hover:-translate-y-2 transition-transform rotate-1">
+<span class="material-symbols-outlined text-tertiary font-bold text-3xl">calendar_month</span>
+<span class="font-ticker-data text-on-background font-extrabold text-xl">Held for 5 Years</span>
+</div>
+<div class="border-[4px] border-on-background bg-primary-fixed rounded-2xl px-6 py-4 flex items-center gap-3 sticker-shadow transform hover:-translate-y-2 transition-transform -rotate-2">
+<span class="material-symbols-outlined text-primary font-bold text-3xl">local_cafe</span>
+<span class="font-ticker-data text-on-background font-extrabold text-xl">= 2,340 Coffees</span>
+</div>
+</div>
+<!-- Share CTA -->
+<button class="bg-surface-container-lowest text-on-background font-display-lg text-2xl font-extrabold uppercase py-5 px-10 rounded-full btn-shadow mb-16 flex items-center gap-3 hover:bg-secondary hover:text-surface-container-lowest transition-all duration-200 transform rotate-1">
+                Share this Pain 🤳
+            </button>
+</section>
+</main>
+<script type="text/babel">
+        // React Component for Recharts Line Chart
+        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceDot } = Recharts;
+
+        const data = [
+            { date: '2019', value: 1000 },
+            { date: '2020', value: 1500 },
+            { date: '2021', value: 3200 },
+            { date: '2022', value: 2800 },
+            { date: '2023', value: 4100 },
+            { date: '2024', value: 5500 },
+        ];
+
+        const ChartComponent = () => (
+            <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e2e1" vertical={false} />
+                    <XAxis 
+                        dataKey="date" 
+                        stroke="#1c1b1b" 
+                        tick={{fill: '#1c1b1b', fontFamily: 'JetBrains Mono', fontSize: 14, fontWeight: 'bold'}} 
+                        axisLine={{strokeWidth: 4, stroke: '#1c1b1b'}}
+                        tickLine={{strokeWidth: 4, stroke: '#1c1b1b'}}
+                    />
+                    <YAxis 
+                        stroke="#1c1b1b" 
+                        tick={{fill: '#1c1b1b', fontFamily: 'JetBrains Mono', fontSize: 14, fontWeight: 'bold'}} 
+                        axisLine={{strokeWidth: 4, stroke: '#1c1b1b'}}
+                        tickLine={{strokeWidth: 4, stroke: '#1c1b1b'}}
+                        tickFormatter={(value) => `$${value}`}
+                    />
+                    <Tooltip 
+                        contentStyle={{ backgroundColor: '#ffffff', borderRadius: '1rem', border: '4px solid #1c1b1b', boxShadow: '6px 6px 0px #1c1b1b', fontFamily: 'Syne', fontWeight: 'bold' }}
+                        itemStyle={{ color: '#630ed4', fontWeight: '800' }}
+                    />
+                    <Line 
+                        type="monotone" 
+                        dataKey="value" 
+                        stroke="#fd56a7" /* secondary-container */
+                        strokeWidth={6} 
+                        dot={{ r: 8, fill: '#ffffff', stroke: '#1c1b1b', strokeWidth: 4 }}
+                        activeDot={{ r: 10, fill: '#630ed4', stroke: '#1c1b1b', strokeWidth: 4 }}
+                    />
+                    {/* Pin Annotation simulating the "skip" point */}
+                    <ReferenceDot x="2019" y={1000} r={10} fill="#ba1a1a" stroke="#1c1b1b" strokeWidth={4} label={{ position: 'top', value: 'You Skipped', fill: '#1c1b1b', fontWeight: '800', fontFamily: 'Syne', fontSize: 18 }} />
+                </LineChart>
+            </ResponsiveContainer>
+        );
+
+        // Vanilla JS logic to handle simulation sequence
+        function runSimulation() {
+            const stock = document.getElementById('stock-input').value;
+            const date = document.getElementById('date-input').value;
+            const amount = document.getElementById('amount-input').value;
+
+            if(!stock || !date || !amount) {
+                alert("Please fill in all vibes... I mean, fields.");
+                return;
+            }
+
+            // Hide form, show results container
+            const inputSection = document.getElementById('input-section');
+            const resultsSection = document.getElementById('results-section');
+            
+            inputSection.style.display = 'none';
+            resultsSection.classList.remove('hidden');
+            
+            // Trigger reflow
+            void resultsSection.offsetWidth;
+            
+            resultsSection.classList.remove('opacity-0');
+
+            // Render Chart
+            const root = ReactDOM.createRoot(document.getElementById('chart-root'));
+            root.render(<ChartComponent />);
+
+            // Animate Number Count-up (mocked value for simulation)
+            animateValue("big-number", 0, 124300, 2000);
+        }
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Ease out quad
+                const easeProgress = progress * (2 - progress);
+                const currentVal = Math.floor(easeProgress * (end - start) + start);
+                
+                // Format as currency
+                obj.innerHTML = "+$" + currentVal.toLocaleString('en-US');
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = "+$" + end.toLocaleString('en-US');
+                    // Add a little pop effect
+                    obj.style.transform = "scale(1.1) rotate(1deg)";
+                    setTimeout(() => obj.style.transform = "scale(1) rotate(1deg)", 150);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body></html>

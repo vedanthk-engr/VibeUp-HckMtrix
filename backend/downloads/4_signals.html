@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VibeUp - Signal Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "tertiary-container": "#aa4900",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "outline": "#7b7487",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed": "#eaddff",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "primary": "#630ed4",
+                        "secondary-container": "#fd56a7",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed": "#3e0022",
+                        "on-secondary-container": "#600037",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#732ee4",
+                        "secondary": "#b4136d",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#ccc3d8",
+                        "on-surface-variant": "#4a4455",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#d2bbff",
+                        "on-primary-container": "#ede0ff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffdecf",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#843700",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "ribbon-width": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Syne"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Space Grotesk"],
+                        "display-xl": ["Syne"],
+                        "display-lg-mobile": ["Syne"],
+                        "body-lg": ["Inter"],
+                        "ticker-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "ticker-data": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Styles for Maximalist Vibe */
+        body {
+            background-color: #fcf9f8; /* background */
+            color: #1c1b1b; /* on-background */
+            overflow-x: hidden;
+        }
+
+        .sticker-card {
+            background: #ffffff;
+            border: 3px solid #1c1b1b;
+            border-radius: 1rem;
+            box-shadow: 8px 8px 0px 0px rgba(28,27,27,1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .sticker-card:hover {
+            transform: translate(-2px, -2px) scale(1.01);
+            box-shadow: 12px 12px 0px 0px rgba(28,27,27,1);
+        }
+
+        .chunky-btn {
+            background: #ffffff;
+            border: 3px solid #1c1b1b;
+            color: #1c1b1b;
+            border-radius: 9999px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 800;
+            box-shadow: 4px 4px 0px 0px rgba(28,27,27,1);
+            transition: all 0.1s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .chunky-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px rgba(28,27,27,1);
+        }
+        .chunky-btn.primary {
+            background: #630ed4; /* primary */
+            color: #ffffff;
+        }
+        .chunky-btn.secondary {
+            background: #fd56a7; /* secondary-container */
+            color: #1c1b1b;
+        }
+
+        .pipe-connector {
+            position: absolute;
+            z-index: -1;
+            stroke: #1c1b1b;
+            stroke-width: 4;
+            fill: none;
+        }
+
+        /* Rainbow Ribbon SVG Background */
+        .rainbow-bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath d='M800,-100 C900,200 600,400 900,800' fill='none' stroke='%23fd56a7' stroke-width='40' opacity='0.8'/%3E%3Cpath d='M840,-100 C940,200 640,400 940,800' fill='none' stroke='%23ffb0cd' stroke-width='40' opacity='0.8'/%3E%3Cpath d='M880,-100 C980,200 680,400 980,800' fill='none' stroke='%237c3aed' stroke-width='40' opacity='0.8'/%3E%3Cpath d='M920,-100 C1020,200 720,400 1020,800' fill='none' stroke='%23eaddff' stroke-width='40' opacity='0.8'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: top right;
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #1c1b1b;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #1c1b1b; } }
+        
+        .sparkline-mock {
+            height: 40px;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(253,86,167,0.1) 0%, rgba(99,14,212,0.1) 100%);
+            border-bottom: 3px solid #630ed4;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .sparkline-mock::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q 25 10, 50 20 T 100 10' fill='none' stroke='%23630ed4' stroke-width='3'/%3E%3C/svg%3E");
+            background-size: 100px 40px;
+            background-repeat: repeat-x;
+            opacity: 0.5;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc3d8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md">
+<div class="rainbow-bg"></div>
+<!-- TopAppBar (From JSON) -->
+<header class="bg-background dark:bg-background text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b-2 border-on-background/10 bg-background/80 backdrop-blur-md flat no shadows flex flex-col w-full z-50 sticky">
+<div class="flex items-center justify-between px-4 py-3 md:px-margin-desktop h-16">
+<div class="flex items-center gap-4">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary dark:text-primary-fixed-dim tracking-tight italic select-none">
+                    VibeUp
+                </div>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 scale-95 active:duration-100" href="#">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary hover:text-secondary transition-colors duration-300 scale-95 active:duration-100" href="#">Vibe Check</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 scale-95 active:duration-100" href="#">Portfolio</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative z-0">
+<!-- SideNavBar (From JSON) -->
+<aside class="bg-surface-container-lowest dark:bg-surface-dim text-secondary dark:text-secondary-fixed-dim h-screen w-24 md:w-64 fixed left-0 top-0 rounded-r-lg border-r-2 border-on-background/10 shadow-[4px_0px_0px_0px_rgba(26,26,26,0.1)] shadow-lg hidden md:flex flex-col py-8 z-40 mt-16 pt-4">
+<div class="px-6 mb-8 flex flex-col items-center md:items-start">
+<div class="w-16 h-16 rounded-full border-2 border-primary overflow-hidden mb-3 bg-primary-fixed relative">
+<img alt="VibeUp Mascot" class="object-cover w-full h-full" data-alt="A vibrant, flat-vector illustration of a cute mascot character for a fintech app, styled with retro 70s maximalism. The character is a smiling, stylized coin or abstract shape with friendly eyes. Light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgF7Upp3qI3_4T4bUNLKjm5TOvIGT37-p4JXf2r7bH7gGFylwr87FoMeoMFm-kkyW5uQSqp9OQ6ysyGiZFKNW2ntkuxvaDyhfMuPpurc33zhpU0qAwbiwU0Ccywn-b7bzLDuqVac3NuUHG8RHvwAixKlb2WO0fs5jkbcFFpcHS-yf7ueYc3g0vfibvCyE_4AWozKtaOtHucq0UCI9ANkkIH89FUlzTAzFKErgIgM1AULZOSg3PZmxniPosNmXVhmhldPEI8rs9wYPb">
+</div>
+<div class="hidden md:block">
+<h2 class="font-headline-sm text-headline-sm text-on-background">VibeUp</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Your Wealth, Your Vibe</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="text-on-surface-variant flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="hidden md:block text-body-lg font-body-lg">Home</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="hidden md:block text-body-lg font-body-lg">Market</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-xl mx-2 flex items-center gap-4 p-4 hover:bg-surface-container-high translate-x-1 transition-transform font-bold" href="#">
+<span class="material-symbols-outlined fill">auto_awesome</span>
+<span class="hidden md:block text-body-lg font-body-lg">Vibe Check</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">wallet</span>
+<span class="hidden md:block text-body-lg font-body-lg">Portfolio</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 mx-2 hover:bg-surface-container-high rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="hidden md:block text-body-lg font-body-lg">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto hidden md:block">
+<button class="chunky-btn primary w-full text-center">Invest Now</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 p-4 md:p-margin-desktop overflow-y-auto pb-32">
+<!-- Heading -->
+<div class="mb-12 flex items-center justify-between flex-wrap gap-4">
+<h1 class="font-display-xl text-[60px] md:text-[100px] leading-[0.9] text-on-background uppercase tracking-tighter flex items-center gap-2">
+                    Signal Feed <span class="text-primary material-symbols-outlined text-[60px] md:text-[100px]" style="font-size: inherit;">bolt</span>
+</h1>
+<!-- Filter Pills -->
+<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar mt-4 w-full md:w-auto">
+<button class="chunky-btn bg-surface-container text-on-surface-variant whitespace-nowrap text-sm px-6 py-2 -rotate-1">All Vibes</button>
+<button class="chunky-btn secondary whitespace-nowrap text-sm px-6 py-2 rotate-2">Bullish</button>
+<button class="chunky-btn bg-surface-container text-on-surface-variant whitespace-nowrap text-sm px-6 py-2 -rotate-1">Bearish</button>
+<button class="chunky-btn bg-surface-container text-on-surface-variant whitespace-nowrap text-sm px-6 py-2 rotate-1">Crypto</button>
+</div>
+</div>
+<!-- Feed Container -->
+<div class="max-w-2xl mx-auto space-y-12 relative">
+<!-- Connector SVGs (Decorative) -->
+<svg class="pipe-connector hidden lg:block" height="400" style="top: 150px; right: -180px;" width="250">
+<path d="M0 0 Q 150 0 150 150 T 250 250" fill="none" stroke="#fd56a7" stroke-width="4"></path>
+<circle cx="250" cy="250" fill="#ffffff" r="10" stroke="#1c1b1b" stroke-width="3"></circle>
+</svg>
+<svg class="pipe-connector hidden lg:block" height="300" style="top: 300px; left: -120px; z-index:-1;" width="200">
+<path d="M0 100 Q 100 100 100 200 T 200 300" fill="none" stroke="#630ed4" stroke-width="4"></path>
+<circle cx="200" cy="300" fill="#ffffff" r="10" stroke="#1c1b1b" stroke-width="3"></circle>
+</svg>
+<!-- Signal Card 1 -->
+<article class="sticker-card p-6 relative bg-white -rotate-1">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-primary rounded-l-lg border-r-2 border-on-background"></div>
+<div class="absolute -top-6 -right-6 text-secondary rotate-12 bg-white rounded-full border-2 border-on-background p-2 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]">
+<span class="material-symbols-outlined text-display-lg-mobile">bolt</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+<div class="flex items-center gap-3">
+<span class="font-display-lg text-2xl tracking-tight">AAPL</span>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded text-[11px] font-bold uppercase border-2 border-on-background">NASDAQ</span>
+<span class="bg-primary-container text-on-primary-container px-4 py-1 rounded-full text-[11px] font-bold uppercase border-2 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] rotate-2">Bullish</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-[11px] font-bold border-2 border-on-background -rotate-1">2 Sources</span>
+</div>
+</div>
+<div class="flex items-end justify-between mb-6 mt-6">
+<div>
+<div class="font-display-xl text-[48px] leading-none tracking-tighter">$173.50</div>
+<div class="text-secondary font-bold flex items-center gap-1 mt-2 text-lg">
+<span class="material-symbols-outlined">arrow_upward</span> +2.4%
+        </div>
+</div>
+<div class="flex-1 max-w-[150px] ml-4">
+<div class="sparkline-mock"></div>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border-3 border-dashed border-on-background mb-6 relative">
+<div class="absolute -top-4 left-4 bg-white px-3 py-1 border-3 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] rounded-full text-[11px] font-bold text-primary flex items-center gap-1 rotate-1">
+<span class="material-symbols-outlined text-sm">smart_toy</span> AI LOGIC
+      </div>
+<p class="mt-2 text-on-background italic font-body-lg font-bold">Volume breakout detected near resistance. Option flow heavily skewed bullish for EOW expiry.</p>
+</div>
+<div class="flex justify-between items-center mt-6">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<span class="bg-white px-4 py-1.5 rounded-full text-sm font-bold border-2 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] flex items-center gap-1 whitespace-nowrap rotate-1">
+<span class="material-symbols-outlined text-[16px]">article</span> WSJ
+        </span>
+<span class="bg-white px-4 py-1.5 rounded-full text-sm font-bold border-2 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] flex items-center gap-1 whitespace-nowrap -rotate-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> Tech Indicators
+        </span>
+</div>
+<button class="chunky-btn primary text-sm py-2 px-8 ml-4">TRADE</button>
+</div>
+</div>
+</article>
+<!-- Signal Card 2 -->
+<article class="sticker-card p-6 relative bg-white rotate-1 mt-8">
+<img alt="Mascot Peeking" class="absolute -top-16 -right-8 w-32 h-32 object-contain rotate-12 z-20 drop-shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgF7Upp3qI3_4T4bUNLKjm5TOvIGT37-p4JXf2r7bH7gGFylwr87FoMeoMFm-kkyW5uQSqp9OQ6ysyGiZFKNW2ntkuxvaDyhfMuPpurc33zhpU0qAwbiwU0Ccywn-b7bzLDuqVac3NuUHG8RHvwAixKlb2WO0fs5jkbcFFpcHS-yf7ueYc3g0vfibvCyE_4AWozKtaOtHucq0UCI9ANkkIH89FUlzTAzFKErgIgM1AULZOSg3PZmxniPosNmXVhmhldPEI8rs9wYPb">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-error rounded-l-lg border-r-2 border-on-background"></div>
+<div class="absolute -bottom-6 -left-6 text-primary -rotate-12 bg-white rounded-full border-2 border-on-background p-2 shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]">
+<span class="material-symbols-outlined text-display-lg-mobile">star</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+<div class="flex items-center gap-3">
+<span class="font-display-lg text-2xl tracking-tight">TSLA</span>
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded text-[11px] font-bold uppercase border-2 border-on-background">NASDAQ</span>
+<span class="bg-error-container text-error px-4 py-1 rounded-full text-[11px] font-bold uppercase border-2 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] -rotate-2">Bearish</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-[11px] font-bold border-2 border-on-background rotate-1">1 Source</span>
+</div>
+</div>
+<div class="flex items-end justify-between mb-6 mt-6">
+<div>
+<div class="font-display-xl text-[48px] leading-none tracking-tighter">$205.10</div>
+<div class="text-error font-bold flex items-center gap-1 mt-2 text-lg">
+<span class="material-symbols-outlined">arrow_downward</span> -1.2%
+        </div>
+</div>
+<div class="flex-1 max-w-[150px] ml-4">
+<div class="h-10 w-full bg-error-container rounded border-b-3 border-error relative overflow-hidden">
+<div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(-45deg, transparent 45%, #ba1a1a 45%, #ba1a1a 55%, transparent 55%); background-size: 12px 12px;"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border-3 border-dashed border-on-background mb-6 relative">
+<div class="absolute -top-4 left-4 bg-white px-3 py-1 border-3 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] rounded-full text-[11px] font-bold text-secondary flex items-center gap-1 -rotate-2">
+<span class="material-symbols-outlined text-sm">warning</span> ALERT
+      </div>
+<p class="mt-2 text-on-background italic font-body-lg font-bold">Sentiment shift negative post-earnings. Moving average crossover suggests short-term bearish trend.</p>
+</div>
+<div class="flex justify-between items-center mt-6">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<span class="bg-white px-4 py-1.5 rounded-full text-sm font-bold border-2 border-on-background shadow-[2px_2px_0px_0px_rgba(28,27,27,1)] flex items-center gap-1 whitespace-nowrap rotate-2">
+<span class="material-symbols-outlined text-[16px]">forum</span> Social Sentiment
+        </span>
+</div>
+<button class="chunky-btn primary text-sm py-2 px-8 ml-4">TRADE</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (From JSON) -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface text-primary dark:text-primary-fixed-dim md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl border-t-2 border-on-background/10 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-body-md font-body-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-body-md font-body-md text-[10px]">Market</span>
+</a>
+<a class="flex flex-col items-center text-secondary font-bold scale-110 hover:text-primary tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined fill">forum</span>
+<span class="text-body-md font-body-md text-[10px]">Vibe Check</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-body-md font-body-md text-[10px]">Me</span>
+</a>
+</nav>
+<style>
+        /* Safe area padding for mobile bottom nav */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .pb-safe {
+                padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</body></html>

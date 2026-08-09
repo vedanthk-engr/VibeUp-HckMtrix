@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vibe Picks - VibeUp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Syne:wght@700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fcf9f8",
+                      "secondary": "#b4136d",
+                      "tertiary-container": "#aa4900",
+                      "primary": "#630ed4",
+                      "on-tertiary-fixed": "#341100",
+                      "secondary-fixed-dim": "#ffb0cd",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#f0eded",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#732ee4",
+                      "outline-variant": "#ccc3d8",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#25005a",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-variant": "#e5e2e1",
+                      "surface-dim": "#dcd9d9",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#d2bbff",
+                      "on-secondary-fixed-variant": "#8c0053",
+                      "surface-container-high": "#eae7e7",
+                      "primary-fixed-dim": "#d2bbff",
+                      "outline": "#7b7487",
+                      "tertiary": "#843700",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-bright": "#fcf9f8",
+                      "surface": "#fcf9f8",
+                      "secondary-fixed": "#ffd9e4",
+                      "secondary-container": "#fd56a7",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-surface": "#1c1b1b",
+                      "on-secondary-container": "#600037",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#ffdecf",
+                      "on-primary-container": "#ede0ff",
+                      "primary-fixed": "#eaddff",
+                      "on-primary-fixed-variant": "#5a00c6",
+                      "inverse-surface": "#313030",
+                      "primary-container": "#7c3aed",
+                      "on-tertiary-fixed-variant": "#783200",
+                      "tertiary-fixed": "#ffdbca",
+                      "on-surface-variant": "#4a4455",
+                      "on-secondary-fixed": "#3e0022",
+                      "tertiary-fixed-dim": "#ffb690",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "ribbon-width": "48px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Syne", "sans-serif"],
+                      "headline-sm": ["Space Grotesk", "sans-serif"],
+                      "display-lg-mobile": ["Syne", "sans-serif"],
+                      "display-xl": ["Syne", "sans-serif"],
+                      "ticker-data": ["JetBrains Mono", "monospace"],
+                      "body-md": ["Inter", "sans-serif"],
+                      "body-lg": ["Inter", "sans-serif"],
+                      "headline-md": ["Space Grotesk", "sans-serif"]
+              },
+              "fontSize": {
+                      "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                      "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                      "display-lg-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                      "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                      "ticker-data": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                      "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+              },
+              "animation": {
+                      "pipe-pulse": "pipe-pulse 3s ease-in-out infinite"
+              },
+              "keyframes": {
+                      "pipe-pulse": {
+                          "0%, 100%": { strokeDashoffset: "0", stroke: "#1c1b1b" },
+                          "50%": { strokeDashoffset: "20", stroke: "#fd56a7", filter: "drop-shadow(0 0 4px #fd56a7)" }
+                      }
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .font-display-lg { font-family: 'Syne', sans-serif; font-size: 56px; line-height: 1.1; letter-spacing: -0.01em; font-weight: 700; }
+        .text-display-lg { font-size: 56px; }
+        .font-headline-sm { font-family: 'Space Grotesk', sans-serif; font-size: 24px; line-height: 1.3; font-weight: 600; }
+        .text-headline-sm { font-size: 24px; }
+        .font-display-lg-mobile { font-family: 'Syne', sans-serif; font-size: 40px; line-height: 1.1; font-weight: 800; }
+        .text-display-lg-mobile { font-size: 40px; }
+        .font-display-xl { font-family: 'Syne', sans-serif; font-size: 80px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; }
+        .text-display-xl { font-size: 80px; }
+        .font-ticker-data { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.0; font-weight: 500; }
+        .text-ticker-data { font-size: 14px; }
+        .font-body-md { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; font-weight: 400; }
+        .text-body-md { font-size: 16px; }
+        .font-body-lg { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; font-weight: 500; }
+        .text-body-lg { font-size: 18px; }
+        .font-headline-md { font-family: 'Space Grotesk', sans-serif; font-size: 32px; line-height: 1.2; font-weight: 700; }
+        .text-headline-md { font-size: 32px; }
+
+        /* Custom Styles for War Room Unbound UI */
+        .sticker-card {
+            background-color: #ffffff;
+            border: 4px solid #1a1a1a;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px 0px rgba(26,26,26,1);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+            z-index: 10;
+        }
+        .sticker-card:hover {
+            transform: translateY(-8px) rotate(0deg) !important;
+            box-shadow: 12px 12px 0px 0px rgba(28,27,27,1);
+            z-index: 50;
+        }
+        
+        .pill-btn {
+            border: 3px solid #1a1a1a;
+            box-shadow: 4px 4px 0px 0px rgba(26,26,26,1);
+            transition: all 0.1s;
+        }
+        .pill-btn:active {
+            transform: translate(4px, 4px) !important;
+            box-shadow: 0px 0px 0px 0px rgba(26,26,26,1) !important;
+        }
+
+        .doodle-border {
+            border: 3px solid #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px 0px rgba(26,26,26,1);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background: #1a1a1a;
+            color: #ffffff;
+            border-bottom: 4px solid #1a1a1a;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse-star {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+        }
+        .star-doodle {
+            animation: pulse-star 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Ticker Marquee (Fixed Top) -->
+<div class="fixed top-0 left-0 w-full z-50">
+<div class="marquee-container py-2">
+<div class="marquee-content font-ticker-data text-ticker-data flex gap-8">
+<span>NIFTY 50 22,400 <span class="text-secondary-container">↑0.4%</span></span>
+<span>SENSEX 73,800 <span class="text-secondary-container">↑0.5%</span></span>
+<span>RELIANCE 2,900 <span class="text-[#7dd3fc]">↓0.2%</span></span>
+<span>TCS 3,950 <span class="text-secondary-container">↑1.1%</span></span>
+<span>HDFCBANK 1,450 <span class="text-secondary-container">↑0.8%</span></span>
+<span>NIFTY 50 22,400 <span class="text-secondary-container">↑0.4%</span></span>
+<span>SENSEX 73,800 <span class="text-secondary-container">↑0.5%</span></span>
+</div>
+</div>
+</div>
+<!-- Sweeping Ribbon Background -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<svg class="absolute w-[150vw] h-[150vh] top-[-20vh] left-[-20vw] opacity-70" preserveaspectratio="xMidYMid slice" viewbox="0 0 1000 1000">
+<path d="M -100,200 C 300,400 400,600 1100,800" fill="none" stroke="#fd56a7" stroke-linecap="round" stroke-width="60"></path>
+<path d="M -100,280 C 300,480 400,680 1100,880" fill="none" stroke="#7c3aed" stroke-linecap="round" stroke-width="60"></path>
+<path d="M -100,360 C 300,560 400,760 1100,960" fill="none" stroke="#fde047" stroke-linecap="round" stroke-width="60"></path>
+</svg>
+</div>
+<!-- Functional Connective Pipes -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<svg class="w-full h-full" fill="none" stroke="#1c1b1b" stroke-width="4">
+<!-- Sidebar to Header -->
+<path class="animate-pipe-pulse" d="M 250 150 C 350 150, 350 100, 400 100" stroke-dasharray="12 12"></path>
+<!-- Header to Content -->
+<path class="animate-pipe-pulse" d="M 50vw 250 C 50vw 350, 60vw 350, 60vw 450" stroke-dasharray="12 12"></path>
+<path class="animate-pipe-pulse" d="M 70vw 300 C 80vw 300, 80vw 400, 90vw 400" stroke-dasharray="12 12"></path>
+</svg>
+</div>
+<div class="pipe-joint absolute top-[100px] left-[400px] w-5 h-5 rounded-full border-4 border-black bg-white z-0 hidden md:block"></div>
+<div class="pipe-joint absolute top-[450px] left-[60vw] w-5 h-5 rounded-full border-4 border-black bg-white z-0 hidden lg:block"></div>
+<!-- Top Navigation (Mobile) -->
+<nav class="md:hidden flex justify-between items-center w-full px-margin-mobile py-3 max-w-full bg-background/90 backdrop-blur-md border-b-4 border-black fixed top-10 z-50 shadow-[0px_4px_0px_0px_rgba(26,26,26,1)]">
+<div class="flex items-center gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight italic drop-shadow-[2px_2px_0px_#fd56a7]">VibeUp</span>
+</div>
+<div class="flex gap-4 items-center">
+<button class="scale-95 active:duration-100 hover:text-secondary transition-colors duration-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="scale-95 active:duration-100 hover:text-secondary transition-colors duration-300">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+<div class="flex">
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen py-8 fixed top-0 bg-surface-container-lowest w-64 border-r-4 border-black shadow-[8px_0px_0px_0px_rgba(26,26,26,1)] z-40 mt-10 rounded-r-3xl">
+<div class="flex flex-col items-start px-6 mb-8 w-full relative">
+<h1 class="font-display-xl text-display-lg text-primary tracking-tight italic drop-shadow-[2px_2px_0px_#fd56a7]">VibeUp</h1>
+<p class="text-body-md text-on-surface-variant mt-1 font-bold transform -rotate-2 bg-[#fde047] px-2 py-1 border-2 border-black rounded-lg inline-block">Stay Groovy</p>
+</div>
+<div class="flex-1 flex flex-col gap-2 w-full mt-4">
+<a class="flex items-center gap-4 p-4 mx-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-300 font-bold border-2 border-transparent hover:border-black" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-lg text-body-lg">Home</span>
+</a>
+<a class="flex items-center gap-4 p-4 mx-2 bg-secondary-container text-on-secondary-container rounded-xl font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transform rotate-1 transition-transform" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-body-lg text-body-lg font-bold">Zine Machine</span>
+</a>
+<a class="flex items-center gap-4 p-4 mx-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-300 font-bold border-2 border-transparent hover:border-black" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-body-lg text-body-lg">Market</span>
+</a>
+<a class="flex items-center gap-4 p-4 mx-2 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all duration-300 font-bold border-2 border-transparent hover:border-black" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-body-lg text-body-lg">Wallets</span>
+</a>
+</div>
+<div class="px-6 mt-auto space-y-4 w-full">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-full font-bold pill-btn mb-4 transform -rotate-2 flex items-center justify-center gap-2">
+    Invest Now
+    <span class="material-symbols-outlined text-sm">rocket_launch</span>
+</button>
+<a class="flex items-center gap-3 p-2 text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 p-2 text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 relative min-h-screen md:ml-64 mt-24 md:mt-16 p-4 md:p-margin-desktop z-10">
+<div class="max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12 relative z-10">
+<div class="relative inline-block">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl mb-4 text-on-background drop-shadow-[4px_4px_0px_#7dd3fc]">
+                        vibe picks 🎯
+                    </h1>
+<!-- Decorative Doodles -->
+<svg class="absolute -top-6 -left-8 z-0 star-doodle" fill="none" height="50" viewbox="0 0 40 40" width="50" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#fde047" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+<svg class="absolute top-0 -right-16 z-0" fill="none" height="40" style="transform: rotate(25deg);" viewbox="0 0 30 40" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 0L30 20H20L25 40L0 15H15L15 0Z" fill="#ffb690" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center flex-wrap gap-3 mt-2">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-bold bg-white px-3 py-1 border-3 border-black rounded-lg inline-block transform rotate-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">personalised for your</span>
+<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold border-3 border-black transform -rotate-3 inline-block shadow-[4px_4px_0px_0px_rgba(28,27,27,1)]">
+                            Thrill Chaser
+                        </span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-bold bg-white px-3 py-1 border-3 border-black rounded-lg inline-block transform rotate-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">profile</span>
+</div>
+<!-- Filter Row -->
+<div class="flex flex-wrap gap-4 mt-10">
+<button class="px-5 py-2.5 bg-on-background text-on-primary rounded-full font-bold border-3 border-black pill-btn hover:bg-inverse-surface transform -rotate-1">All Picks</button>
+<button class="px-5 py-2.5 bg-white text-on-background rounded-full font-bold border-3 border-black pill-btn hover:bg-surface-container-high transform rotate-2">High Momentum 🔥</button>
+<button class="px-5 py-2.5 bg-white text-on-background rounded-full font-bold border-3 border-black pill-btn hover:bg-surface-container-high transform -rotate-2">Undervalued 💎</button>
+<button class="px-5 py-2.5 bg-white text-on-background rounded-full font-bold border-3 border-black pill-btn hover:bg-surface-container-high transform rotate-1">Earnings Play 📊</button>
+</div>
+</header>
+<!-- Broken Grid Layout for Picks -->
+<div class="flex flex-col lg:flex-row gap-12 relative z-10 items-start">
+<!-- Card 1 (Zomato) -->
+<article class="sticker-card p-6 md:p-8 w-full lg:w-1/2 relative transform -rotate-2">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-display-lg text-[40px] md:text-[48px] leading-none mb-2 font-bold drop-shadow-[2px_2px_0px_#fde047]">Zomato Ltd</h2>
+<span class="font-ticker-data text-ticker-data font-bold bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform rotate-2 inline-block">ZOMATO</span>
+</div>
+<div class="bg-[#10b981] text-on-primary px-6 py-2 rounded-full font-bold border-3 border-black rotate-[6deg] shadow-[4px_4px_0px_0px_#1c1b1b] text-xl tracking-wider">
+                                BUY
+                            </div>
+</div>
+<!-- Price Block -->
+<div class="grid grid-cols-3 gap-3 mb-8 bg-white p-5 rounded-2xl border-3 border-black border-dashed shadow-inner">
+<div class="text-center">
+<p class="text-xs uppercase font-bold text-outline mb-1">CMP</p>
+<p class="font-ticker-data text-xl font-bold">₹185.50</p>
+</div>
+<div class="text-center border-l-2 border-r-2 border-black border-dashed">
+<p class="text-xs uppercase font-bold text-outline mb-1">Target</p>
+<p class="font-ticker-data text-xl font-bold text-[#10b981]">₹220.00</p>
+</div>
+<div class="text-center">
+<p class="text-xs uppercase font-bold text-outline mb-1">Stop Loss</p>
+<p class="font-ticker-data text-xl font-bold text-error">₹170.00</p>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center mb-8 bg-[#c8e6c9] border-3 border-black rounded-xl p-4 transform rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<p class="text-sm uppercase font-bold text-on-surface-variant mb-1">Upside Potential</p>
+<p class="font-display-lg text-5xl text-[#2e7d32] drop-shadow-[2px_2px_0px_#ffffff]">+18%</p>
+</div>
+<!-- Chart Placeholder -->
+<div class="w-full h-40 bg-surface-container-low rounded-xl border-4 border-black relative mb-8 overflow-hidden flex items-end shadow-inner">
+<!-- Grid Lines -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a20_2px,transparent_2px),linear-gradient(to_bottom,#1a1a1a20_2px,transparent_2px)] bg-[size:32px_32px]"></div>
+<svg class="w-full h-full preserve-3d relative z-10" preserveaspectratio="none" viewbox="0 0 100 30">
+<path d="M0,25 L10,22 L20,24 L30,18 L40,20 L50,15 L60,10 L70,12 L80,5 L90,8 L100,2" fill="none" stroke="#630ed4" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+<!-- Highlighted Entry Zone -->
+<rect fill="rgba(253, 86, 167, 0.3)" height="30" width="30" x="70" y="0"></rect>
+</svg>
+<span class="absolute right-4 top-4 text-xs font-bold bg-[#fde047] text-black px-3 py-1.5 rounded-lg border-2 border-black transform rotate-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-20">Entry Zone 🔥</span>
+</div>
+<!-- Thesis -->
+<div class="mb-8 p-5 bg-white border-3 border-black rounded-xl doodle-border">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">insights</span>
+<h3 class="font-headline-sm text-2xl font-bold">The Vibe Thesis</h3>
+</div>
+<ul class="space-y-3 font-body-md font-medium text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">✅</span>
+<span>Consistent quarter-on-quarter profitability growth.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">✅</span>
+<span>Blinkit acquisition showing faster-than-expected turnaround.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">⚠️</span>
+<span>High valuation multiples leave little room for error.</span>
+</li>
+</ul>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mt-auto">
+<button class="flex-1 py-3.5 bg-white text-on-background font-bold rounded-xl pill-btn text-center text-lg transform rotate-1">
+                                Paper Trade 📝
+                            </button>
+<button class="flex-[1.5] py-3.5 bg-[#10b981] text-on-primary font-bold rounded-xl pill-btn text-center flex justify-center items-center gap-2 group text-lg transform -rotate-1 hover:-translate-y-1">
+                                Trade on Groww
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto px-6 py-3.5 bg-on-background text-on-primary font-bold rounded-xl pill-btn text-center hover:bg-inverse-surface text-lg">
+                                Debate ⚔️
+                            </button>
+</div>
+</article>
+<!-- Card 2 (Tata Motors) -->
+<article class="sticker-card p-6 md:p-8 w-full lg:w-1/2 relative transform rotate-3 lg:mt-24">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-display-lg text-[40px] md:text-[48px] leading-none mb-2 font-bold drop-shadow-[2px_2px_0px_#ffb0cd]">Tata Motors</h2>
+<span class="font-ticker-data text-ticker-data font-bold bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform -rotate-2 inline-block">TATAMOTORS</span>
+</div>
+<div class="bg-surface-variant text-on-surface-variant px-6 py-2 rounded-full font-bold border-3 border-black rotate-[-8deg] shadow-[4px_4px_0px_0px_#1c1b1b] text-xl tracking-wider">
+                                HOLD
+                            </div>
+</div>
+<!-- Price Block -->
+<div class="grid grid-cols-3 gap-3 mb-8 bg-white p-5 rounded-2xl border-3 border-black border-dashed shadow-inner opacity-70">
+<div class="text-center">
+<p class="text-xs uppercase font-bold text-outline mb-1">CMP</p>
+<p class="font-ticker-data text-xl font-bold">₹1,015.20</p>
+</div>
+<div class="text-center border-l-2 border-r-2 border-black border-dashed">
+<p class="text-xs uppercase font-bold text-outline mb-1">Target</p>
+<p class="font-ticker-data text-xl font-bold text-on-surface-variant">-</p>
+</div>
+<div class="text-center">
+<p class="text-xs uppercase font-bold text-outline mb-1">Stop Loss</p>
+<p class="font-ticker-data text-xl font-bold text-on-surface-variant">-</p>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center mb-8 bg-surface-variant border-3 border-black rounded-xl p-4 transform -rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] opacity-70">
+<p class="text-sm uppercase font-bold text-on-surface-variant mb-1">Upside Potential</p>
+<p class="font-display-lg text-5xl text-on-surface-variant drop-shadow-[2px_2px_0px_#ffffff]">--</p>
+</div>
+<!-- Chart Placeholder -->
+<div class="w-full h-40 bg-surface-container-low rounded-xl border-4 border-black relative mb-8 overflow-hidden flex items-end shadow-inner">
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a20_2px,transparent_2px),linear-gradient(to_bottom,#1a1a1a20_2px,transparent_2px)] bg-[size:32px_32px]"></div>
+<svg class="w-full h-full preserve-3d relative z-10" preserveaspectratio="none" viewbox="0 0 100 30">
+<path d="M0,15 L20,18 L40,12 L60,16 L80,14 L100,15" fill="none" stroke="#fd56a7" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+<!-- Thesis -->
+<div class="mb-8 p-5 bg-white border-3 border-black rounded-xl doodle-border">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">insights</span>
+<h3 class="font-headline-sm text-2xl font-bold">The Vibe Thesis</h3>
+</div>
+<ul class="space-y-3 font-body-md font-medium text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">✅</span>
+<span>Strong domestic PV and EV market share.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">⚠️</span>
+<span>JLR margins facing short-term headwinds.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="mt-0.5 text-lg">⚠️</span>
+<span>Consolidation expected after recent massive run-up.</span>
+</li>
+</ul>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mt-auto">
+<button class="flex-1 py-3.5 bg-white text-on-background font-bold rounded-xl pill-btn text-center text-lg transform -rotate-1">
+                                Paper Trade 📝
+                            </button>
+<button class="flex-[1.5] py-3.5 bg-[#10b981] text-on-primary font-bold rounded-xl pill-btn text-center flex justify-center items-center gap-2 group text-lg opacity-50 cursor-not-allowed">
+                                Trade on Groww
+                            </button>
+<button class="w-full sm:w-auto px-6 py-3.5 bg-on-background text-on-primary font-bold rounded-xl pill-btn text-center hover:bg-inverse-surface text-lg transform rotate-1">
+                                Debate ⚔️
+                            </button>
+</div>
+</article>
+</div>
+</div>
+<!-- Floating Action Button (Mic/Command) -->
+<button class="fixed bottom-24 md:bottom-8 right-6 md:right-8 w-16 h-16 bg-[#fde047] text-black rounded-full flex items-center justify-center shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] border-4 border-black z-50 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(26,26,26,1)] transition-all">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<!-- Hidden Toast Notification (Restyled for War Room) -->
+<div class="fixed bottom-margin-mobile left-margin-mobile md:left-[280px] bg-white border-4 border-black rounded-xl p-4 shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] flex items-center gap-4 transform translate-y-[150%] transition-transform duration-300 z-50 doodle-border" id="groww-toast">
+<div class="w-12 h-12 bg-[#00d09c] rounded-full flex items-center justify-center font-bold text-white border-3 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xl transform -rotate-6">G</div>
+<div>
+<p class="font-bold text-on-background text-lg leading-tight">Opening Groww 🚀</p>
+<p class="text-sm font-medium text-on-surface-variant">trades are yours to make.</p>
+</div>
+<button class="ml-auto text-on-surface-variant hover:text-on-background border-2 border-transparent hover:border-black rounded-full p-1 transition-all" onclick="document.getElementById('groww-toast').classList.add('translate-y-[150%]')">
+<span class="material-symbols-outlined font-bold">close</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest border-t-4 border-black shadow-[0_-8px_0px_rgba(0,0,0,1)] rounded-t-2xl">
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90 font-bold" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-body-md text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center text-secondary font-bold scale-110 tap-highlight-transparent active:scale-90 bg-secondary-container p-2 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform -translate-y-2" href="#">
+<span class="material-symbols-outlined mb-1 text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-body-md text-xs text-on-secondary-container">Zine</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90 font-bold" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">trending_up</span>
+<span class="font-body-md text-xs">Market</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant hover:text-primary tap-highlight-transparent active:scale-90 font-bold" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+<span class="font-body-md text-xs">Wallets</span>
+</a>
+</nav>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('groww-toast');
+            
+            document.querySelectorAll('button').forEach(btn => {
+                if(btn.textContent.includes('Trade on Groww') && !btn.classList.contains('cursor-not-allowed')) {
+                    btn.addEventListener('click', () => {
+                        toast.classList.remove('translate-y-[150%]');
+                        setTimeout(() => {
+                            toast.classList.add('translate-y-[150%]');
+                        }, 3000);
+                    });
+                }
+            });
+        });
+    </script>
+</body></html>

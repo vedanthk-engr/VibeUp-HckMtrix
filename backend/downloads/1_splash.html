@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeUp Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "tertiary-container": "#aa4900",
+                        "error": "#ba1a1a",
+                        "background": "#faf7f2", /* Adjusted to warm cream */
+                        "surface-container": "#f0eded",
+                        "outline": "#7b7487",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed": "#eaddff",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "primary": "#630ed4",
+                        "secondary-container": "#fd56a7",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed": "#3e0022",
+                        "on-secondary-container": "#600037",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#732ee4",
+                        "secondary": "#b4136d",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#ccc3d8",
+                        "on-surface-variant": "#4a4455",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#d2bbff",
+                        "on-primary-container": "#ede0ff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffdecf",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#843700",
+                        "on-error": "#ffffff",
+                        
+                        /* Rainbow Colors */
+                        "rainbow-1": "#b4136d",
+                        "rainbow-2": "#7c3aed",
+                        "rainbow-3": "#fd56a7",
+                        "rainbow-4": "#ffb690",
+                        "rainbow-5": "#fde047",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "ribbon-width": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Syne"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Space Grotesk"],
+                        "display-xl": ["Syne"],
+                        "display-lg-mobile": ["Syne"],
+                        "body-lg": ["Inter"],
+                        "ticker-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-xl": ["120px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-lg-mobile": ["64px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "ticker-data": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf7f2;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes pulse-star {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+        }
+        .star-doodle {
+            animation: pulse-star 3s ease-in-out infinite;
+        }
+        @keyframes float-mascot {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        .mascot-doodle {
+            animation: float-mascot 4s ease-in-out infinite;
+        }
+        
+        /* Dark top section background curve */
+        .dark-curve {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background-color: #1c1b1b;
+            clip-path: ellipse(120% 80% at 50% 0%);
+            z-index: 0;
+        }
+
+        /* Rainbow path styling */
+        .rainbow-path {
+            fill: none;
+            stroke-linecap: round;
+        }
+        
+        /* Pipe drawing animation */
+        @keyframes draw-pipe {
+            to { stroke-dashoffset: 0; }
+        }
+        .drawn-pipe {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-pipe 3s forwards ease-in-out;
+        }
+
+        /* New Animations */
+        @keyframes rumble {
+            0%, 100% { transform: translate(0, 0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-2px, -2px) rotate(-0.5deg); }
+            20%, 40%, 60%, 80% { transform: translate(2px, 2px) rotate(0.5deg); }
+        }
+        @keyframes steady-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+        .rumble-pulse {
+            animation: rumble 0.8s ease-out, steady-pulse 3s ease-in-out 0.8s infinite;
+        }
+
+        @keyframes shake-hover {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-3deg) translateY(-2px); }
+            75% { transform: rotate(3deg) translateY(-2px); }
+        }
+        .btn-shake-hover:hover {
+            animation: shake-hover 0.3s ease-in-out infinite;
+            box-shadow: 16px 16px 0px 0px #1c1b1b !important;
+        }
+
+        @keyframes liquid-flow {
+            from { stroke-dashoffset: 40; }
+            to { stroke-dashoffset: 0; }
+        }
+        .liquid-pipe {
+            stroke-dasharray: 10 10;
+            animation: liquid-flow 1s linear infinite;
+            stroke: #7c3aed;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 1; transform: translateY(80vh) scale(1); }
+            80% { opacity: 1; }
+            100% { transform: translateY(-20vh) scale(1.5) rotate(180deg); opacity: 0; }
+        }
+        .particle {
+            position: absolute;
+            animation: float-up 10s linear infinite;
+            color: #fde047;
+            font-size: 24px;
+            z-index: 15;
+            pointer-events: none;
+        }
+        .p1 { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .p2 { left: 30%; animation-duration: 12s; animation-delay: 2s; color: #fd56a7; }
+        .p3 { left: 60%; animation-duration: 9s; animation-delay: 4s; }
+        .p4 { left: 80%; animation-duration: 15s; animation-delay: 1s; color: #ffb690; }
+        .p5 { left: 90%; animation-duration: 11s; animation-delay: 3s; font-size: 16px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen w-screen overflow-x-hidden relative font-body-md flex flex-col items-center">
+<!-- Shader Background -->
+<canvas class="absolute inset-0 w-full h-full z-[5] pointer-events-none opacity-60 mix-blend-screen" id="shader-canvas"></canvas>
+<!-- Particles -->
+<div class="particle p1">✨</div>
+<div class="particle p2">⭐</div>
+<div class="particle p3">✨</div>
+<div class="particle p4">✧</div>
+<div class="particle p5">⭐</div>
+<!-- Dark Top Section -->
+<div class="dark-curve"></div>
+<!-- Sweeping Rainbow Ribbons -->
+<div class="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+<svg class="absolute w-[150vw] h-[150vh] top-[-20vh] left-[-25vw] opacity-100" preserveaspectratio="xMidYMid slice" viewbox="0 0 1000 1000">
+<!-- First Rainbow Sweep -->
+<path class="rainbow-path stroke-rainbow-1" d="M -100,500 C 300,500 400,200 1100,600" stroke-width="30"></path>
+<path class="rainbow-path stroke-rainbow-2" d="M -100,530 C 300,530 400,230 1100,630" stroke-width="30"></path>
+<path class="rainbow-path stroke-rainbow-3" d="M -100,560 C 300,560 400,260 1100,660" stroke-width="30"></path>
+<path class="rainbow-path stroke-rainbow-4" d="M -100,590 C 300,590 400,290 1100,690" stroke-width="30"></path>
+<path class="rainbow-path stroke-rainbow-5" d="M -100,620 C 300,620 400,320 1100,720" stroke-width="30"></path>
+<!-- Second Rainbow Sweep (Right side curve) -->
+<path class="rainbow-path stroke-rainbow-1" d="M 700,-100 C 700,300 900,400 1100,300" stroke-width="20"></path>
+<path class="rainbow-path stroke-rainbow-2" d="M 720,-100 C 720,320 900,420 1100,320" stroke-width="20"></path>
+<path class="rainbow-path stroke-rainbow-3" d="M 740,-100 C 740,340 900,440 1100,340" stroke-width="20"></path>
+<path class="rainbow-path stroke-rainbow-4" d="M 760,-100 C 760,360 900,460 1100,360" stroke-width="20"></path>
+</svg>
+</div>
+<!-- Doodles & Illustrative Elements (Foreground) -->
+<!-- Sun/Moon Character -->
+<div class="absolute top-[10%] left-[20%] z-20 mascot-doodle">
+<svg fill="none" height="80" viewbox="0 0 80 80" width="80" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="40" fill="#fde047" r="30" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="25" cy="35" fill="#1c1b1b" r="4"></circle>
+<circle cx="45" cy="35" fill="#1c1b1b" r="4"></circle>
+<path d="M 30 50 Q 35 55 40 50" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-width="3"></path>
+<!-- Moon overlay -->
+<path d="M 15 20 Q 30 10 40 15 Q 25 30 15 20" fill="#fd56a7" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Flower Character -->
+<div class="absolute top-[20%] right-[15%] z-20 mascot-doodle" style="animation-delay: 1s;">
+<svg fill="none" height="120" viewbox="0 0 100 120" width="100" xmlns="http://www.w3.org/2000/svg">
+<!-- Stem and leaves -->
+<path d="M 50 70 Q 60 100 50 120" fill="none" stroke="#86efac" stroke-width="6"></path>
+<path d="M 50 90 Q 70 80 80 90 Q 60 100 50 90" fill="#86efac" stroke="#1c1b1b" stroke-width="2"></path>
+<path d="M 50 100 Q 30 90 20 100 Q 40 110 50 100" fill="#86efac" stroke="#1c1b1b" stroke-width="2"></path>
+<!-- Petals -->
+<circle cx="50" cy="40" fill="#ffffff" r="30" stroke="#1c1b1b" stroke-dasharray="10 10" stroke-width="4"></circle>
+<path d="M 50 10 A 15 15 0 0 1 65 25 A 15 15 0 0 1 80 40 A 15 15 0 0 1 65 55 A 15 15 0 0 1 50 70 A 15 15 0 0 1 35 55 A 15 15 0 0 1 20 40 A 15 15 0 0 1 35 25 A 15 15 0 0 1 50 10 Z" fill="#ffffff" stroke="#1c1b1b" stroke-width="3"></path>
+<!-- Face -->
+<circle cx="50" cy="40" fill="#fde047" r="15" stroke="#1c1b1b" stroke-width="3"></circle>
+<circle cx="45" cy="35" fill="#1c1b1b" r="2"></circle>
+<circle cx="55" cy="35" fill="#1c1b1b" r="2"></circle>
+<path d="M 45 45 Q 50 50 55 45" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Stars -->
+<div class="absolute top-[15%] left-[45%] z-20 star-doodle">
+<svg fill="none" height="30" viewbox="0 0 40 40" width="30" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#ffffff" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="absolute top-[30%] right-[35%] z-20 star-doodle" style="animation-delay: 0.5s;">
+<svg fill="none" height="20" viewbox="0 0 40 40" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#ffb690" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Machinery & Pipes (Background to text but over background color) -->
+<div class="absolute bottom-0 left-0 w-full h-[50vh] z-10 pointer-events-none rumble-pulse origin-bottom">
+<svg class="w-full h-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 1000 500">
+<!-- Left complex pipe -->
+<path class="drawn-pipe" d="M -50,450 L 100,450 L 100,300 L 250,300 L 250,350 L 400,350" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path>
+<path d="M -50,450 L 100,450 L 100,300 L 250,300 L 250,350 L 400,350" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+<path class="liquid-pipe" d="M -50,450 L 100,450 L 100,300 L 250,300 L 250,350 L 400,350" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Valve joint -->
+<circle cx="250" cy="300" fill="#fde047" r="20" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="250" cy="300" fill="#1c1b1b" r="5"></circle>
+<rect fill="#ffffff" height="10" stroke="#1c1b1b" stroke-width="3" transform="rotate(45 250 300)" width="40" x="230" y="295"></rect>
+<!-- Right complex pipe -->
+<path class="drawn-pipe" d="M 1050,400 L 800,400 L 800,250 L 600,250 L 600,350 L 450,350" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" style="animation-delay: 0.5s;"></path>
+<path d="M 1050,400 L 800,400 L 800,250 L 600,250 L 600,350 L 450,350" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+<path class="liquid-pipe" d="M 1050,400 L 800,400 L 800,250 L 600,250 L 600,350 L 450,350" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Central machine/boiler -->
+<path d="M 400,330 L 450,330 L 450,400 L 400,400 Z" fill="#eaddff" stroke="#1c1b1b" stroke-width="4"></path>
+<circle cx="425" cy="365" fill="#fd56a7" r="15" stroke="#1c1b1b" stroke-width="3"></circle>
+<path d="M 425 350 L 425 330" stroke="#1c1b1b" stroke-width="3"></path>
+<circle cx="425" cy="325" fill="#fde047" r="5" stroke="#1c1b1b" stroke-width="2"></circle>
+<!-- Steam -->
+<path d="M 425 315 C 415 300, 440 280, 420 260 C 410 240, 440 220, 425 200" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="8"></path>
+<!-- Random floating pipe chunks -->
+<path d="M 700,450 Q 750,480 800,450" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-width="10"></path>
+<path d="M 700,450 Q 750,480 800,450" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="4"></path>
+<!-- Pressure gauge -->
+<circle cx="800" cy="250" fill="#ffffff" r="25" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="800" cy="250" fill="#ffb690" r="15"></circle>
+<path d="M 800 250 L 810 240" stroke="#1c1b1b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Main Content Area -->
+<main class="relative z-30 flex flex-col items-center justify-start text-center px-gutter w-full mt-24 md:mt-32">
+<!-- Typography Group - VibeUp Branding -->
+<div class="mb-12 relative z-30 w-full flex flex-col items-center">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] -z-10 pointer-events-none" id="vibe-hub-container"></div>
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl text-[#ffffff] drop-shadow-[4px_4px_0px_#1c1b1b] mb-2 tracking-tighter leading-none" style="text-shadow: -2px -2px 0 #1c1b1b, 2px -2px 0 #1c1b1b, -2px 2px 0 #1c1b1b, 2px 2px 0 #1c1b1b, 8px 8px 0 #fd56a7;">
+                VibeUp
+</h1>
+<p class="font-headline-md text-body-lg md:text-headline-sm text-on-background tracking-tight bg-surface-container-lowest px-6 py-2 border-2 border-[#1c1b1b] rounded-full transform rotate-1 mt-4 shadow-[4px_4px_0px_#1c1b1b]">
+                your money. your move.
+            </p>
+</div>
+<!-- CTA Button - Prominently placed in the center -->
+<div class="mt-8 z-40 relative">
+<!-- Connecting line to CTA -->
+<svg class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-4 h-12 pointer-events-none" fill="none" stroke="#1c1b1b" stroke-width="4">
+<path d="M 2 0 L 2 48" stroke-dasharray="6 6"></path>
+</svg>
+<button class="group relative inline-flex items-center justify-center px-12 py-5 font-headline-md text-headline-sm bg-[#ffffff] text-on-background rounded-full border-4 border-on-background shadow-[8px_8px_0px_0px_#1c1b1b] transition-all duration-200 active:translate-y-2 active:shadow-[0px_0px_0px_0px_#1c1b1b] overflow-hidden btn-shake-hover">
+<span class="relative z-10">Get Started</span>
+<!-- Sparkle effect inside button on hover -->
+<span class="absolute inset-0 bg-[#fde047] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out z-0"></span>
+<span class="relative z-10 material-symbols-outlined ml-3 group-hover:rotate-45 transition-transform text-3xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Sub-section Header (like Speakers & Workshops) -->
+<div class="mt-48 mb-32 relative z-30 w-full flex flex-col items-center">
+<h2 class="font-display-xl text-headline-md md:text-display-lg text-on-background mb-4 tracking-tighter leading-tight max-w-2xl text-center px-4" style="text-shadow: 2px 2px 0px #ffffff;">
+        Investments<br/>&amp; Strategies
+    </h2>
+<p class="font-body-md text-on-background max-w-md text-center font-medium bg-[#ffffff]/80 backdrop-blur-sm p-2 rounded-lg border-2 border-[#1c1b1b]">
+        We are the money makers and we are the dreamers of dreams.
+    </p>
+<button class="mt-6 px-8 py-3 font-headline-sm text-body-lg bg-[#ffffff] text-on-background rounded-full border-3 border-on-background shadow-[4px_4px_0px_0px_#1c1b1b] hover:bg-[#ffb690] transition-colors">
+        Learn more
+    </button>
+</div>
+</main>
+<!-- Mascot Peeking (Coin Character) -->
+<!-- Placed peeking from behind the main CTA or bottom machinery -->
+<div class="absolute bottom-[25%] left-[10%] md:left-[20%] z-30 mascot-doodle origin-bottom">
+<img class="w-32 h-auto md:w-48 object-contain drop-shadow-[4px_4px_0px_#1c1b1b]" data-alt="A stylized, retro-groovy maximalist 2D cartoon mascot with a round shape, large expressive eyes, and an excited smile, colored in vibrant pinks and purples, peeking out playfully." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGCRbltQOfaAZFjkRbD1oC1xWyKCk7g6J8fuW0P29qcIYwOrYXUfeCv--kGwJ3LJTOn2_CQEZctfg0kJ_uzUPHccg7-DVfZ3BtXz1YaIIz7EFs-bs2qX9-B_gGYVossXBAYal1ugiFFSuOzfqk8vlkM7o2ih487cIOftFpqv32fD3h69scnXTR3PFCTiZ6UnUoJ5poZSD7410N2nk-zpzVDHCjIkV5zoFPDDgsFv7-W74T8pQdDFohiK1w3QYJ8hDBTDmBwhrjFzHs"/>
+</div>
+<!-- Info Card (Left floating) -->
+<div class="absolute top-[30%] left-[5%] md:left-[10%] z-30 hidden md:block w-48 text-left">
+<p class="font-body-md text-surface-container-lowest text-sm mb-4 leading-tight">
+        Come with me to a land of creative investing, collaboration, and plenty of spectacular returns.
+    </p>
+<button class="w-12 h-12 rounded-full bg-[#fd56a7] border-2 border-[#1c1b1b] flex items-center justify-center shadow-[4px_4px_0px_#1c1b1b] hover:bg-[#ffb0cd]">
+<span class="material-symbols-outlined text-[#ffffff]" data-icon="play_arrow">play_arrow</span>
+</button>
+</div>
+<!-- Shader Script -->
+<script>
+    const canvas = document.getElementById('shader-canvas');
+    const gl = canvas.getContext('webgl');
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const vsSource = `
+        attribute vec4 aVertexPosition;
+        varying vec2 v_texCoord;
+        void main() {
+            gl_Position = aVertexPosition;
+            v_texCoord = aVertexPosition.xy * 0.5 + 0.5;
+        }
+    `;
+
+    const fsSource = `
+        precision highp float;
+        varying vec2 v_texCoord;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+
+        vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+        float snoise(vec2 v){
+          const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                   -0.577350269189626, 0.024390243902439);
+          vec2 i  = floor(v + dot(v, C.yy) );
+          vec2 x0 = v -   i + dot(i, C.xx);
+          vec2 i1;
+          i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+          vec4 x12 = x0.xyxy + C.xxzz;
+          x12.xy -= i1;
+          i = mod(i, 289.0);
+          vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+          + i.x + vec3(0.0, i1.x, 1.0 ));
+          vec3 m = max(0.5 - vec4(dot(x0,x0), dot(x12.xy,x12.xy),
+            dot(x12.zw,x12.zw), 0.0), 0.0);
+          m = m*m ;
+          m = m*m ;
+          vec3 x = 2.0 * fract(p * C.www) - 1.0;
+          vec3 h = abs(x) - 0.5;
+          vec3 ox = floor(x + 0.5);
+          vec3 a0 = x - ox;
+          m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+          vec3 g;
+          g.x  = a0.x  * x0.x  + h.x  * x0.y;
+          g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+          return 130.0 * dot(m, g);
+        }
+
+        void main() {
+            vec2 uv = v_texCoord;
+            float n = snoise(uv * 3.0 + u_time * 0.2);
+            
+            vec3 c1 = vec3(0.486, 0.227, 0.929);
+            vec3 c2 = vec3(0.929, 0.227, 0.541);
+            vec3 c3 = vec3(1.0, 0.843, 0.0);
+            vec3 c4 = vec3(0.988, 0.976, 0.972);
+            
+            vec3 color = mix(c1, c2, n * 0.5 + 0.5);
+            color = mix(color, c3, snoise(uv * 5.0 - u_time * 0.1) * 0.3);
+            color = mix(color, c4, 1.0 - smoothstep(0.0, 0.8, uv.y));
+            
+            gl_FragColor = vec4(color, 0.15);
+        }
+    `;
+
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        return shader;
+    }
+
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+    const shaderProgram = gl.createProgram();
+    gl.attachShader(shaderProgram, vertexShader);
+    gl.attachShader(shaderProgram, fragmentShader);
+    gl.linkProgram(shaderProgram);
+    gl.useProgram(shaderProgram);
+
+    const positions = new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0]);
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+    const vertexPosition = gl.getAttribLocation(shaderProgram, 'aVertexPosition');
+    gl.enableVertexAttribArray(vertexPosition);
+    gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 0, 0);
+
+    const timeLocation = gl.getUniformLocation(shaderProgram, 'u_time');
+    
+    let startTime = Date.now();
+    function renderShader() {
+        gl.uniform1f(timeLocation, (Date.now() - startTime) / 1000.0);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(renderShader);
+    }
+    renderShader();
+</script>
+<!-- 3D Vibe Hub Script -->
+<script>
+    const container = document.getElementById('vibe-hub-container');
+    const scene = new THREE.Scene();
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+
+    const geometry = new THREE.CylinderGeometry(2, 2, 0.5, 32);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0x7c3aed, 
+        shininess: 100,
+        emissive: 0x2e1065
+    });
+    const hub = new THREE.Mesh(geometry, material);
+    hub.rotation.x = Math.PI / 2;
+    scene.add(hub);
+
+    const torusGeo = new THREE.TorusGeometry(3, 0.1, 16, 100);
+    const torusMat = new THREE.MeshBasicMaterial({ color: 0xec4899 });
+    const ring = new THREE.Mesh(torusGeo, torusMat);
+    scene.add(ring);
+
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+    scene.add(new THREE.AmbientLight(0x404040));
+
+    camera.position.z = 8;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        hub.rotation.y += 0.01;
+        ring.rotation.x += 0.005;
+        ring.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+    });
+
+    animate();
+</script>
+<script>
+        // Auto-route simulation (for demo purposes)
+        setTimeout(() => {
+            console.log("Auto-routing to main app...");
+            // window.location.href = '/home'; // Uncomment in real app
+        }, 5000);
+    </script>
+</body></html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeUp - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "tertiary-container": "#aa4900",
+                        "error": "#ba1a1a",
+                        "background": "#faf7f2",
+                        "surface-container": "#f0eded",
+                        "outline": "#7b7487",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed": "#eaddff",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "primary": "#630ed4",
+                        "secondary-container": "#fd56a7",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed": "#3e0022",
+                        "on-secondary-container": "#600037",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#25005a",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-container-high": "#eae7e7",
+                        "surface-tint": "#732ee4",
+                        "secondary": "#b4136d",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#ccc3d8",
+                        "on-surface-variant": "#4a4455",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#d2bbff",
+                        "on-primary-container": "#ede0ff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffdecf",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#843700",
+                        "on-error": "#ffffff",
+                        
+                        /* Rainbow Colors */
+                        "rainbow-1": "#b4136d",
+                        "rainbow-2": "#7c3aed",
+                        "rainbow-3": "#fd56a7",
+                        "rainbow-4": "#ffb690",
+                        "rainbow-5": "#fde047"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "ribbon-width": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Syne"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Space Grotesk"],
+                        "display-xl": ["Syne"],
+                        "display-lg-mobile": ["Syne"],
+                        "body-lg": ["Inter"],
+                        "ticker-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "ticker-data": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf7f2;
+            color: #1c1b1b;
+        }
+        
+        .sticker-card {
+            background-color: #ffffff;
+            border: 4px solid #1c1b1b;
+            box-shadow: 8px 8px 0px 0px #fd56a7;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 2rem;
+        }
+        .sticker-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px #fd56a7;
+        }
+
+        .pill-btn {
+            background-color: #ffffff;
+            border: 4px solid #1c1b1b;
+            box-shadow: 6px 6px 0px 0px rgba(28, 27, 27, 1);
+            transition: all 0.2s;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+        .pill-btn:hover {
+            transform: translate(-2px, -2px) rotate(1deg);
+            box-shadow: 8px 8px 0px 0px rgba(28, 27, 27, 1);
+        }
+        .pill-btn:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px 0px rgba(28, 27, 27, 1);
+        }
+        
+        .pill-btn-primary {
+            background-color: #630ed4;
+            color: #ffffff;
+        }
+        .pill-btn-primary:hover {
+            background-color: #7c3aed;
+        }
+
+        .step-container {
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .step-container.active {
+            display: block;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* Rainbow Background */
+        .rainbow-path {
+            fill: none;
+            stroke-linecap: round;
+            filter: url(#roughness);
+        }
+
+        .paper-texture {
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            z-index: 50;
+            opacity: 0.05;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        @keyframes pulse-star {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+        }
+        .star-doodle {
+            animation: pulse-star 3s ease-in-out infinite;
+        }
+
+        @keyframes draw-pipe {
+            to { stroke-dashoffset: 0; }
+        }
+        .drawn-pipe {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-pipe 3s forwards ease-in-out;
+            filter: url(#roughness-subtle);
+        }
+        
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background: #fd56a7;
+            border: 4px solid #1c1b1b;
+            cursor: pointer;
+            margin-top: -16px;
+            box-shadow: 4px 4px 0px #1c1b1b;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 12px;
+            cursor: pointer;
+            background: #e5e2e1;
+            border-radius: 6px;
+            border: 4px solid #1c1b1b;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden flex flex-col font-body-md text-body-md selection:bg-secondary-fixed selection:text-on-background">
+<div class="paper-texture"></div>
+<!-- SVG Filters for organic lines -->
+<svg class="hidden">
+<defs>
+<filter id="roughness">
+<feturbulence basefrequency="0.05" numoctaves="3" result="noise" type="fractalNoise"></feturbulence>
+<fedisplacementmap in="SourceGraphic" in2="noise" scale="5" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+</filter>
+<filter id="roughness-subtle">
+<feturbulence basefrequency="0.05" numoctaves="2" result="noise" type="fractalNoise"></feturbulence>
+<fedisplacementmap in="SourceGraphic" in2="noise" scale="2" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+</filter>
+</defs>
+</svg>
+<!-- Sweeping Rainbow Ribbons -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<svg class="absolute w-[150vw] h-[150vh] top-[-10vh] left-[-20vw] opacity-80" preserveaspectratio="xMidYMid slice" viewbox="0 0 1000 1000">
+<path class="rainbow-path stroke-rainbow-1" d="M -100,700 C 300,520 600,800 1200,400" stroke-width="40"></path>
+<path class="rainbow-path stroke-rainbow-2" d="M -100,740 C 300,560 600,840 1200,440" stroke-width="40"></path>
+<path class="rainbow-path stroke-rainbow-3" d="M -100,780 C 300,600 600,880 1200,480" stroke-width="40"></path>
+<path class="rainbow-path stroke-rainbow-4" d="M -100,820 C 300,640 600,920 1200,520" stroke-width="40"></path>
+<path class="rainbow-path stroke-rainbow-5" d="M -100,860 C 300,680 600,960 1200,560" stroke-width="40"></path>
+</svg>
+</div>
+<!-- Extra Doodles & Sparks -->
+<div class="fixed inset-0 pointer-events-none z-10">
+<div class="absolute top-[20%] left-[10%] star-doodle opacity-70">
+<svg fill="none" height="30" viewbox="0 0 40 40" width="30" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#ffb690" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="absolute top-[15%] right-[15%] star-doodle opacity-80" style="animation-delay: 1.2s;">
+<svg fill="none" height="40" viewbox="0 0 40 40" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#fde047" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="absolute bottom-[30%] left-[20%] star-doodle opacity-60" style="animation-delay: 0.8s;">
+<svg fill="none" height="25" viewbox="0 0 40 40" width="25" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 0L23.5 16.5L40 20L23.5 23.5L20 40L16.5 23.5L0 20L16.5 16.5L20 0Z" fill="#fd56a7" stroke="#1c1b1b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="absolute top-[40%] right-[8%] opacity-50 transform rotate-45">
+<svg fill="none" height="60" stroke="#b4136d" stroke-width="3" viewbox="0 0 50 50" width="60" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 25 Q25 10 40 25 Q25 40 10 25 M25 10 L25 40 M10 25 L40 25" stroke-dasharray="4 6"></path>
+</svg>
+</div>
+<div class="absolute bottom-[20%] right-[25%] opacity-60">
+<svg fill="none" height="40" viewbox="0 0 40 40" width="40" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="20" r="15" stroke="#7c3aed" stroke-dasharray="4 4" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+<!-- Enhanced Machinery/Pipes at Bottom -->
+<div class="fixed bottom-0 left-0 w-full h-48 pointer-events-none z-10 opacity-80">
+<svg class="w-full h-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 1000 200">
+<!-- Left pipe -->
+<path class="drawn-pipe" d="M 100,200 L 100,80 L 200,80 L 200,150 L 350,150" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path>
+<path d="M 100,200 L 100,80 L 200,80 L 200,150 L 350,150" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6" style="filter: url(#roughness-subtle);"></path>
+<!-- Valve joint -->
+<circle cx="200" cy="80" fill="#fde047" r="22" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="200" cy="80" fill="#1c1b1b" r="5"></circle>
+<!-- Center machinery -->
+<path d="M 450,120 L 550,120 L 550,200 L 450,200 Z" fill="#eaddff" stroke="#1c1b1b" stroke-width="4"></path>
+<circle cx="500" cy="160" fill="#fd56a7" r="24" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="500" cy="160" fill="#ffffff" r="12" stroke="#1c1b1b" stroke-width="2"></circle>
+<!-- Right pipe -->
+<path class="drawn-pipe" d="M 900,200 L 900,100 L 700,100 L 700,160 L 550,160" fill="none" stroke="#1c1b1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" style="animation-delay: 0.5s;"></path>
+<path d="M 900,200 L 900,100 L 700,100 L 700,160 L 550,160" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6" style="filter: url(#roughness-subtle);"></path>
+<!-- Gauge -->
+<circle cx="700" cy="100" fill="#ffffff" r="28" stroke="#1c1b1b" stroke-width="4"></circle>
+<circle cx="700" cy="100" fill="#ffb690" r="18"></circle>
+<path d="M 700 100 L 712 88" stroke="#1c1b1b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Top Nav -->
+<header class="w-full flex justify-between items-center p-6 z-30 relative">
+<div class="mb-12 relative z-30 flex flex-col items-start -mt-4">
+<h1 class="font-display-xl text-3xl md:text-5xl text-[#ffffff] mb-2 tracking-tighter leading-none relative inline-block">
+<span class="absolute inset-0 text-[#b4136d] translate-x-1 translate-y-1 z-[-1]" style="text-shadow: -2px -2px 0 #1c1b1b, 2px -2px 0 #1c1b1b, -2px 2px 0 #1c1b1b, 2px 2px 0 #1c1b1b;">VibeUp</span>
+<span class="absolute inset-0 text-[#7c3aed] translate-x-2 translate-y-2 z-[-2]" style="text-shadow: -2px -2px 0 #1c1b1b, 2px -2px 0 #1c1b1b, -2px 2px 0 #1c1b1b, 2px 2px 0 #1c1b1b;">VibeUp</span>
+<span class="relative z-10" style="text-shadow: -2px -2px 0 #1c1b1b, 2px -2px 0 #1c1b1b, -2px 2px 0 #1c1b1b, 2px 2px 0 #1c1b1b;">VibeUp</span>
+</h1>
+</div>
+<div class="bg-surface-container-lowest text-on-background px-6 py-2 rounded-full font-headline-sm text-lg border-4 border-on-background shadow-[4px_4px_0px_0px_#fd56a7] transform rotate-2">Step <span id="current-step-indicator">1</span> of 4</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop w-full max-w-5xl mx-auto relative z-30">
+<!-- Mascot Peeking -->
+<div class="absolute -top-16 -left-4 md:-top-10 md:-left-20 z-40 animate-pulse">
+<div class="relative w-24 h-24 bg-[#fde047] rounded-full border-4 border-[#1c1b1b] shadow-[4px_4px_0px_0px_#1c1b1b] p-4 transform -rotate-12 flex items-center justify-center">
+<span class="text-4xl">👻</span>
+</div>
+</div>
+<!-- STEP 1: Pick your vibe -->
+<div class="step-container active w-full" id="step1">
+<div class="sticker-card p-8 md:p-12 transform rotate-1 mx-auto relative bg-[#ffffff]/90 backdrop-blur-sm">
+<!-- Scribble arrow doodle -->
+<svg class="absolute -top-10 -right-10 w-20 h-20 transform rotate-12 z-50" fill="none" stroke="#7c3aed" stroke-width="4" viewbox="0 0 100 100">
+<path d="M 20 80 Q 50 20 80 40 M 70 25 L 85 45 L 60 50" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<div class="relative mb-12 text-center">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase italic font-extrabold relative inline-block text-on-background">
+        pick your vibe
+        <svg class="absolute -bottom-4 left-0 w-full h-6" preserveaspectratio="none" viewbox="0 0 300 20">
+<path d="M0,10 Q15,0 30,10 T60,10 T90,10 T120,10 T150,10 T180,10 T210,10 T240,10 T270,10 T300,10" fill="none" stroke="#630ed4" stroke-width="6" style="filter: url(#roughness-subtle);"></path>
+</svg>
+</h1>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 relative z-20">
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-tertiary-fixed hover:bg-tertiary-fixed-dim" onclick="nextStep(2)">
+<span class="text-5xl">🇮🇳</span>
+<span class="font-headline-sm text-headline-sm">India Glow-up</span>
+</button>
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-primary-fixed hover:bg-primary-fixed-dim" onclick="nextStep(2)">
+<span class="text-5xl">🤖</span>
+<span class="font-headline-sm text-headline-sm">AI Future</span>
+</button>
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-surface-container hover:bg-surface-variant" onclick="nextStep(2)">
+<span class="text-5xl">🥱</span>
+<span class="font-headline-sm text-headline-sm">Boring Money</span>
+</button>
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-surface-container-high hover:bg-surface-variant" onclick="nextStep(2)">
+<span class="text-5xl">🌍</span>
+<span class="font-headline-sm text-headline-sm">Eco Warrior</span>
+</button>
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-secondary-fixed hover:bg-secondary-fixed-dim" onclick="nextStep(2)">
+<span class="text-5xl">🎮</span>
+<span class="font-headline-sm text-headline-sm">Gaming</span>
+</button>
+<button class="pill-btn p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-center bg-surface-container hover:bg-surface-variant" onclick="nextStep(2)">
+<span class="text-5xl">🎲</span>
+<span class="font-headline-sm text-headline-sm">Wildcard</span>
+</button>
+</div>
+</div>
+</div>
+<!-- STEP 2: How much you dropping? -->
+<div class="step-container w-full max-w-2xl mx-auto" id="step2">
+<div class="sticker-card p-8 md:p-12 transform -rotate-1 relative bg-[#ffffff]/90 backdrop-blur-sm">
+<h1 class="font-display-lg text-display-lg-mobile md:text-headline-md mb-8 text-center font-extrabold uppercase italic">how much you dropping? 💸</h1>
+<div class="mb-12 flex flex-col gap-6 relative z-20">
+<div class="text-center bg-surface-container-low p-6 rounded-2xl border-4 border-on-background inline-block mx-auto transform rotate-2">
+<span class="font-display-xl text-display-xl text-primary font-black">$<span id="amountDisplay">500</span></span>
+<p class="text-on-surface-variant mt-2 font-display-xl text-lg uppercase tracking-wider">per month</p>
+</div>
+<div class="px-4 py-8">
+<input id="amountSlider" max="5000" min="50" oninput="document.getElementById('amountDisplay').innerText = this.value" step="50" type="range" value="500"/>
+</div>
+<div class="h-32 bg-surface-container-low border-4 border-on-background rounded-xl flex items-end relative overflow-hidden mt-4 opacity-80">
+<div class="absolute inset-0 flex items-center justify-center text-outline-variant font-ticker-data text-ticker-data opacity-50">Chart Projection Placeholder</div>
+<div class="w-full h-1/2 bg-gradient-to-t from-secondary-fixed to-transparent"></div>
+</div>
+</div>
+<div class="flex justify-between mt-8 relative z-20">
+<button class="pill-btn px-8 py-4 rounded-full font-headline-sm text-headline-sm" onclick="prevStep(1)">Back</button>
+<button class="pill-btn pill-btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm" onclick="nextStep(3)">Next</button>
+</div>
+</div>
+</div>
+<!-- STEP 3: Risk Tolerance -->
+<div class="step-container w-full max-w-2xl mx-auto" id="step3">
+<div class="sticker-card p-8 md:p-12 transform rotate-1 relative bg-[#ffffff]/90 backdrop-blur-sm">
+<h1 class="font-display-lg text-display-lg-mobile md:text-headline-md mb-8 text-center font-extrabold uppercase italic">how do you handle dips? 🎢</h1>
+<div class="flex flex-col gap-6 mb-8 relative z-20">
+<button class="pill-btn p-6 rounded-2xl flex justify-between items-center w-full bg-surface-container hover:bg-surface-variant" onclick="nextStep(4)">
+<span class="font-display-xl text-2xl font-bold">Slow &amp; Steady 🐢</span>
+<span class="text-on-surface-variant font-body-lg text-body-lg border-2 border-on-background px-4 py-1 rounded-full bg-surface-container-lowest">Low stress</span>
+</button>
+<button class="pill-btn p-6 rounded-2xl flex justify-between items-center w-full bg-tertiary-fixed hover:bg-tertiary-fixed-dim" onclick="nextStep(4)">
+<span class="font-display-xl text-2xl font-bold">Middle Ground ⚖️</span>
+<span class="text-on-surface-variant font-body-lg text-body-lg border-2 border-on-background px-4 py-1 rounded-full bg-surface-container-lowest">Balanced</span>
+</button>
+<button class="pill-btn p-6 rounded-2xl flex justify-between items-center w-full bg-secondary-fixed hover:bg-secondary-fixed-dim" onclick="nextStep(4)">
+<span class="font-display-xl text-2xl font-bold">To the Moon 🚀</span>
+<span class="text-on-surface-variant font-body-lg text-body-lg border-2 border-on-background px-4 py-1 rounded-full bg-surface-container-lowest">High reward</span>
+</button>
+</div>
+<div class="flex justify-start mt-8 relative z-20">
+<button class="pill-btn px-8 py-4 rounded-full font-headline-sm text-headline-sm" onclick="prevStep(2)">Back</button>
+</div>
+</div>
+</div>
+<!-- STEP 4: Vibe Profile Dropped -->
+<div class="step-container w-full max-w-3xl mx-auto text-center relative" id="step4">
+<div class="sticker-card p-8 md:p-16 transform -rotate-1 relative bg-[#ffffff]/90 backdrop-blur-sm">
+<h2 class="font-headline-sm text-headline-sm text-secondary mb-4 bg-surface-container inline-block px-6 py-2 rounded-full border-4 border-on-background transform rotate-2">your vibe profile dropped 🎉</h2>
+<h1 class="font-display-xl text-display-xl md:text-[80px] text-display-lg-mobile text-[40px] text-on-background mb-12 uppercase italic leading-none font-black drop-shadow-[4px_4px_0px_#630ed4]">⚡ The Thrill Chaser</h1>
+<p class="font-display-xl text-xl mb-6 font-bold uppercase">Starter Picks for you:</p>
+<div class="flex flex-wrap justify-center gap-4 mb-12 relative z-20">
+<div class="pill-btn px-8 py-4 rounded-full font-headline-sm text-headline-sm bg-tertiary-fixed transform -rotate-2">Tech ETF</div>
+<div class="pill-btn px-8 py-4 rounded-full font-headline-sm text-headline-sm bg-secondary-fixed transform rotate-1">Crypto Basket</div>
+<div class="pill-btn px-8 py-4 rounded-full font-headline-sm text-headline-sm bg-primary-fixed transform -rotate-1">Space X Acc</div>
+</div>
+<button class="pill-btn bg-on-background text-surface-container-lowest px-12 py-6 rounded-full font-display-xl text-3xl italic shadow-[8px_8px_0px_0px_#fd56a7] hover:shadow-[12px_12px_0px_0px_#fd56a7] transition-all flex items-center justify-center gap-4 mx-auto uppercase relative z-20">
+                enter war room <span class="material-symbols-outlined text-4xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        function nextStep(step) {
+            document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            document.getElementById('current-step-indicator').innerText = step;
+            
+            if(step === 4) {
+                 createConfetti();
+            }
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            document.getElementById('current-step-indicator').innerText = step;
+        }
+
+        function createConfetti() {
+            const colors = ['#fd56a7', '#630ed4', '#aa4900', '#1c1b1b', '#ffdbca'];
+            const shapes = ['square', 'circle', 'triangle'];
+            for(let i=0; i<80; i++) {
+                let conf = document.createElement('div');
+                conf.style.position = 'absolute';
+                conf.style.width = Math.random() * 15 + 10 + 'px';
+                conf.style.height = conf.style.width;
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                let shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape === 'circle') conf.style.borderRadius = '50%';
+                if (shape === 'triangle') {
+                    conf.style.width = '0';
+                    conf.style.height = '0';
+                    conf.style.backgroundColor = 'transparent';
+                    conf.style.borderLeft = `${Math.random() * 10 + 5}px solid transparent`;
+                    conf.style.borderRight = `${Math.random() * 10 + 5}px solid transparent`;
+                    conf.style.borderBottom = `${Math.random() * 15 + 10}px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+                }
+
+                if(Math.random() > 0.5) conf.style.border = '2px solid #1c1b1b';
+
+                conf.style.top = '-50px';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.opacity = Math.random() * 0.5 + 0.5;
+                conf.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                conf.style.zIndex = '50';
+                
+                document.body.appendChild(conf);
+                
+                let duration = Math.random() * 3 + 2;
+                conf.animate([
+                    { transform: `translate3d(0,0,0) rotate(0deg) scale(1)`, opacity: 1 },
+                    { transform: `translate3d(${Math.random()*300 - 150}px, 120vh, 0) rotate(${Math.random()*1080}deg) scale(${Math.random()})`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(.37,0,.63,1)',
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => conf.remove(), duration * 1000);
+            }
+        }
+    </script>
+</body></html>

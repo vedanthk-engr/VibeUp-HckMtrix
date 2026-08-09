@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeUp Chat - Zine Edition</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#630ed4",
+                      "inverse-on-surface": "#f3f0ef",
+                      "surface-bright": "#fcf9f8",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#eae7e7",
+                      "on-primary-fixed": "#25005a",
+                      "surface-container": "#f0eded",
+                      "secondary-fixed-dim": "#ffb0cd",
+                      "primary-container": "#7c3aed",
+                      "tertiary": "#843700",
+                      "on-surface-variant": "#4a4455",
+                      "on-background": "#1c1b1b",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#600037",
+                      "tertiary-fixed": "#ffdbca",
+                      "outline": "#7b7487",
+                      "on-tertiary-fixed": "#341100",
+                      "on-secondary": "#ffffff",
+                      "secondary-container": "#fd56a7",
+                      "surface-tint": "#732ee4",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#eaddff",
+                      "surface-dim": "#dcd9d9",
+                      "on-primary-container": "#ede0ff",
+                      "on-error": "#ffffff",
+                      "on-surface": "#1c1b1b",
+                      "surface-container-low": "#f6f3f2",
+                      "outline-variant": "#ccc3d8",
+                      "on-error-container": "#93000a",
+                      "secondary": "#b4136d",
+                      "inverse-primary": "#d2bbff",
+                      "on-tertiary-fixed-variant": "#783200",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-tertiary-container": "#ffdecf",
+                      "primary-fixed-dim": "#d2bbff",
+                      "surface-variant": "#e5e2e1",
+                      "secondary-fixed": "#ffd9e4",
+                      "background": "#fcf9f8",
+                      "inverse-surface": "#313030",
+                      "tertiary-fixed-dim": "#ffb690",
+                      "surface": "#fcf9f8",
+                      "on-secondary-fixed": "#3e0022",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed-variant": "#5a00c6",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#8c0053",
+                      "tertiary-container": "#aa4900",
+                      "positive": "#10b981",
+                      "negative": "#ef4444"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "ribbon-width": "48px",
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Syne"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "ticker-data": ["JetBrains Mono"],
+                      "headline-md": ["Space Grotesk"],
+                      "display-lg-mobile": ["Syne"],
+                      "display-xl": ["Syne"]
+              },
+              "fontSize": {
+                      "display-lg": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                      "ticker-data": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                      "headline-md": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "1.1", "fontWeight": "800"}],
+                      "display-xl": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { 
+            background-color: #fcf9f8; 
+            overflow-x: hidden; 
+        }
+        
+        /* Zine Specific Styles */
+        .sticker-shadow { 
+            box-shadow: 6px 6px 0px 0px rgba(28,27,27,1); 
+            border: 4px solid #1c1b1b;
+        }
+        .btn-shadow { 
+            box-shadow: 4px 4px 0px 0px rgba(28,27,27,1); 
+            border: 3px solid #1c1b1b;
+        }
+        .btn-shadow:active { 
+            box-shadow: 0px 0px 0px 0px rgba(28,27,27,1); 
+            transform: translate(4px, 4px); 
+        }
+
+        .doodle-bg {
+            background-image: radial-gradient(#1c1b1b 1px, transparent 1px), radial-gradient(#1c1b1b 1px, transparent 1px);
+            background-position: 0 0, 20px 20px;
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+
+        .ticker-scroll {
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .ribbon-bg {
+            background: linear-gradient(135deg, #630ed4 0%, #b4136d 25%, #fd56a7 50%, #ffb690 75%, #ffdbca 100%);
+            background-size: 200% 200%;
+            animation: ribbonFlow 10s ease infinite;
+        }
+        @keyframes ribbonFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .organic-pipe {
+            stroke-dasharray: 10 10;
+            animation: flow 20s linear infinite;
+        }
+        @keyframes flow {
+            to { stroke-dashoffset: -100; }
+        }
+        
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        
+        .pulse-text { animation: pulseText 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulseText { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+        .waveform-bar { animation: waveform 1.2s ease-in-out infinite alternate; transform-origin: bottom; }
+        @keyframes waveform { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; border-left: 2px dashed rgba(28,27,27,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #1c1b1b; border: 2px solid #fcf9f8; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex flex-col md:flex-row relative">
+<!-- Dense Background Doodles & Pattern -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden doodle-bg"></div>
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-60">
+<!-- Rainbow Sweeps -->
+<div class="absolute top-[-10%] left-[-10%] w-[120%] h-64 ribbon-bg opacity-40 transform -rotate-12 blur-3xl"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[120%] h-96 ribbon-bg opacity-30 transform rotate-45 blur-3xl"></div>
+<!-- Stars and Doodles -->
+<svg class="absolute top-32 left-1/4 w-12 h-12 text-secondary rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="absolute top-64 right-1/4 w-16 h-16 text-primary rotate-45 opacity-60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"></path></svg>
+<svg class="absolute bottom-40 left-10 w-20 h-20 text-tertiary-container -rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen w-72 bg-surface-bright border-r-[4px] border-on-background fixed left-0 top-0 py-8 px-6 z-40 shadow-[8px_0px_0px_0px_rgba(26,26,26,1)]">
+<div class="mb-12 relative">
+<h1 class="font-display-lg text-display-lg font-extrabold text-primary tracking-tighter uppercase mb-2 relative z-10">VibeUp</h1>
+<div class="absolute -bottom-2 -left-2 w-full h-4 bg-secondary transform -skew-x-12 z-0 opacity-50"></div>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant relative z-10 mt-2">Your Zine Machine</p>
+</div>
+<ul class="flex flex-col gap-4 flex-grow relative z-10">
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary p-4 transition-all hover:bg-primary-fixed hover:text-on-primary-fixed rounded-xl duration-200 hover:rotate-2 hover:scale-105 border-2 border-transparent hover:border-on-background hover:shadow-[4px_4px_0px_0px_#1a1a1a]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-headline-sm text-headline-sm">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary p-4 transition-all hover:bg-primary-fixed hover:text-on-primary-fixed rounded-xl duration-200 hover:-rotate-1 hover:scale-105 border-2 border-transparent hover:border-on-background hover:shadow-[4px_4px_0px_0px_#1a1a1a]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">show_chart</span>
+<span class="font-headline-sm text-headline-sm">Market</span>
+</a>
+</li>
+<li>
+<!-- Active State -->
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container border-[3px] border-on-background rounded-2xl px-6 py-4 shadow-[6px_6px_0px_0px_#1a1a1a] transform -rotate-1 hover:rotate-0 hover:scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mood</span>
+<span class="font-headline-sm text-headline-sm font-bold">Vibe Check</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary p-4 transition-all hover:bg-primary-fixed hover:text-on-primary-fixed rounded-xl duration-200 hover:rotate-1 hover:scale-105 border-2 border-transparent hover:border-on-background hover:shadow-[4px_4px_0px_0px_#1a1a1a]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_balance</span>
+<span class="font-headline-sm text-headline-sm">Portfolio</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary p-4 transition-all hover:bg-primary-fixed hover:text-on-primary-fixed rounded-xl duration-200 hover:-rotate-2 hover:scale-105 border-2 border-transparent hover:border-on-background hover:shadow-[4px_4px_0px_0px_#1a1a1a]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-headline-sm text-headline-sm">Settings</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto flex flex-col gap-4 relative z-10">
+<button class="w-full bg-primary text-on-primary border-[3px] border-on-background rounded-2xl py-4 font-headline-sm text-headline-sm font-bold shadow-[6px_6px_0px_0px_#1a1a1a] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0px_0px_#1a1a1a] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform rotate-1">
+                Invest Now
+            </button>
+</div>
+</nav>
+<!-- TopNavBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile py-4 w-full sticky top-0 z-50 bg-background border-b-[3px] border-on-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
+<h1 class="font-display-lg-mobile text-display-lg-mobile font-extrabold text-primary uppercase tracking-tighter">VibeUp</h1>
+<div class="flex gap-4">
+<button class="text-on-background hover:text-secondary transition-colors">
+<span class="material-symbols-outlined font-bold">mic</span>
+</button>
+<button class="text-on-background hover:text-secondary transition-colors">
+<span class="material-symbols-outlined font-bold">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col min-h-screen relative overflow-hidden z-10">
+<!-- Factory Pipes / Organic Connections Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-[-1] hidden md:block" preserveaspectratio="none">
+<path class="text-on-background organic-pipe" d="M 0,150 C 200,150 150,300 400,300" fill="none" stroke="currentColor" stroke-width="6"></path>
+<circle cx="100" cy="150" fill="#ffb690" r="12" stroke="#1c1b1b" stroke-width="4"></circle>
+<path class="text-on-background organic-pipe" d="M 800,50 Q 900,100 900,400 T 1000,600" fill="none" stroke="currentColor" stroke-width="8"></path>
+<rect fill="#630ed4" height="20" stroke="#1c1b1b" stroke-width="4" transform="rotate(15 800 50)" width="20" x="790" y="40"></rect>
+</svg>
+<!-- Top Marquee Ticker -->
+<div class="w-full overflow-hidden border-b-[4px] border-on-background bg-on-background py-3 z-20">
+<div class="whitespace-nowrap ticker-scroll flex gap-8 font-ticker-data text-ticker-data items-center font-bold text-lg">
+<span class="text-positive">AAPL +1.2%</span>
+<span class="material-symbols-outlined text-sm text-secondary">star</span>
+<span class="text-negative">TSLA -0.5%</span>
+<span class="material-symbols-outlined text-sm text-primary">star</span>
+<span class="text-positive">VIBE +42.0%</span>
+<span class="material-symbols-outlined text-sm text-tertiary">star</span>
+<span class="text-surface-bright">SPY +0.1%</span>
+<span class="material-symbols-outlined text-sm text-secondary">star</span>
+<span class="text-positive">NIFTY +0.8%</span>
+<span class="material-symbols-outlined text-sm text-primary">star</span>
+<span class="text-negative">TSLA -0.5%</span>
+</div>
+</div>
+<!-- TopAppBar Desktop -->
+<header class="hidden md:flex justify-end items-center px-8 py-6 w-full z-20">
+<div class="flex items-center gap-6">
+<button class="w-12 h-12 rounded-full border-[3px] border-on-background bg-surface-container-lowest text-on-background flex items-center justify-center hover:bg-secondary hover:text-on-secondary transition-colors shadow-[4px_4px_0px_0px_#1a1a1a] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_#1a1a1a]">
+<span class="material-symbols-outlined text-3xl">mic</span>
+</button>
+<button class="w-12 h-12 rounded-full border-[3px] border-on-background bg-surface-container-lowest text-on-background flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors shadow-[4px_4px_0px_0px_#1a1a1a] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_#1a1a1a]">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Chat Container -->
+<div class="flex-1 flex flex-col p-4 md:p-8 max-w-5xl mx-auto w-full relative z-20">
+<!-- Header -->
+<div class="flex items-center justify-between mb-8 transform -rotate-1 relative">
+<div class="absolute -inset-4 bg-primary/10 rounded-3xl transform rotate-2 -z-10"></div>
+<h2 class="font-display-xl text-5xl md:text-7xl font-extrabold text-on-background tracking-tighter uppercase drop-shadow-[4px_4px_0px_rgba(255,255,255,1)]">ask aurex anything 🧠</h2>
+<div class="flex items-center gap-3 bg-surface-container-lowest px-4 py-2 rounded-full sticker-shadow transform rotate-2">
+<span class="w-3 h-3 rounded-full bg-positive border-2 border-on-background"></span>
+<span class="font-ticker-data text-ticker-data font-bold uppercase tracking-wider">online</span>
+</div>
+</div>
+<!-- Chat Window -->
+<div class="flex-1 bg-surface-container-lowest rounded-3xl sticker-shadow flex flex-col overflow-hidden mb-8 relative transform rotate-[0.5deg]">
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-6 md:p-8 space-y-8 custom-scrollbar flex flex-col relative">
+<!-- Background Watermark -->
+<div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[20rem] font-bold" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4 max-w-[85%] relative z-10">
+<div class="w-12 h-12 rounded-full bg-on-background flex items-center justify-center shrink-0 border-[3px] border-primary shadow-[4px_4px_0px_0px_#1a1a1a] transform -rotate-6">
+<span class="font-display-lg text-2xl font-extrabold text-primary-fixed">A⚡</span>
+</div>
+<div class="bg-surface p-5 rounded-3xl rounded-tl-sm border-[4px] border-on-background shadow-[6px_6px_0px_0px_#1a1a1a] text-on-background font-body-lg text-xl font-medium">
+<p class="mb-4">Yo! Based on current market vibes, <span class="bg-[#00e5ff] text-on-background px-3 py-1 rounded-md font-ticker-data text-ticker-data font-bold border-2 border-on-background shadow-[2px_2px_0px_0px_#1a1a1a] transform -rotate-2 inline-block">$TSLA</span> is seeing some wild resistance.</p>
+<p>Meanwhile, <span class="bg-[#00e5ff] text-on-background px-3 py-1 rounded-md font-ticker-data text-ticker-data font-bold border-2 border-on-background shadow-[2px_2px_0px_0px_#1a1a1a] transform rotate-1 inline-block">$NIFTY</span> just broke past its moving average. Want me to break down a strategy?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-4 max-w-[85%] self-end flex-row-reverse relative z-10 mt-6">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0 border-[3px] border-on-background shadow-[4px_4px_0px_0px_#1a1a1a] transform rotate-6">
+<span class="material-symbols-outlined text-on-background font-bold text-2xl">person</span>
+</div>
+<div class="bg-on-background p-5 rounded-3xl rounded-tr-sm border-[4px] border-on-background shadow-[6px_6px_0px_0px_#fd56a7] text-surface-container-lowest font-body-lg text-xl font-medium transform -rotate-1">
+<p>roast my portfolio 💀</p>
+</div>
+</div>
+<!-- AI Typing State -->
+<div class="flex items-start gap-4 max-w-[85%] relative z-10 mt-6">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 border-[3px] border-on-background shadow-[4px_4px_0px_0px_#1a1a1a] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stylized 2D flat illustration of a playful ghost-flame mascot in a vibrant retro 70s maximalist style. The mascot is holding one hand to its ear in a 'listening' pose. Drawn with thick black outlines on a solid hot pink background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDUscqpTjWKsOJD8T9RbxvEAMTD3vEYCM58riR3wKo54IddKPUFWqoz6jfSnSC_fMNsnPP75dqPfLOs6GamoiebdxxUV_JhObs83g_Lh4bS_YnsS6jTqiDEmOeWm6DoIg9ohK4JWOobGw70k0BG6IFJE5A4wxTprnOdgm6YPCLuQyVfFw_48C7-5zypv4JCcpAEHtP6WpMHQgXzDiOF_VJzH_JvQSccP6y4NJf-yPxch0798CZXuR2QRgIUYOEdrkwI4ET-IPt8oLL"/>
+</div>
+<div class="bg-surface px-6 py-4 rounded-3xl rounded-tl-sm border-[4px] border-on-background shadow-[6px_6px_0px_0px_#1a1a1a] flex items-center gap-2 w-24 transform rotate-1">
+<div class="w-3 h-3 bg-primary rounded-full typing-dot border-2 border-on-background"></div>
+<div class="w-3 h-3 bg-secondary rounded-full typing-dot border-2 border-on-background"></div>
+<div class="w-3 h-3 bg-tertiary rounded-full typing-dot border-2 border-on-background"></div>
+</div>
+</div>
+</div>
+<!-- Quick Chips -->
+<div class="p-6 border-t-[4px] border-on-background bg-surface-variant/50 relative">
+<!-- Tape Decoration -->
+<div class="absolute -top-4 right-8 w-20 h-8 bg-error opacity-80 transform rotate-6 z-10 mix-blend-multiply border-2 border-on-background"></div>
+<div class="flex flex-wrap gap-3 relative z-10">
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-primary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform -rotate-1">why is nifty moving? 📊</button>
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-secondary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform rotate-1">roast my portfolio 💀</button>
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-tertiary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform -rotate-2">best SIP for ₹5k 📈</button>
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-primary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform rotate-2">explain F&amp;O like i'm 5 🍼</button>
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-secondary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform -rotate-1">what to buy this week? 🎯</button>
+<button class="bg-surface-container-lowest border-[3px] border-on-background px-4 py-2 rounded-xl font-ticker-data text-ticker-data font-bold text-on-background shadow-[4px_4px_0px_0px_#1a1a1a] hover:bg-tertiary-fixed hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all transform rotate-1">debate a stock ⚔️</button>
+</div>
+</div>
+</div>
+<!-- Bottom Input Area with Mascot -->
+<div class="relative w-full mt-4 flex items-end gap-4">
+<!-- Thinking Mascot -->
+<div class="hidden lg:block absolute -top-24 -left-12 w-32 h-32 transform -rotate-12 hover:rotate-0 transition-transform duration-300 z-30">
+<img class="w-full h-full object-contain filter drop-shadow-[4px_4px_0px_rgba(28,27,27,1)]" data-alt="A stylized, groovy 2D flat illustration of a playful ghost-flame mascot in a vibrant retro 70s maximalist style. The mascot has wide, animated eyes looking thoughtful. Drawn with thick black outlines on a solid creamy background, featuring pop-art colors like hot pink and electric violet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD94RxEwsGjTyuSqaA43I6NWLHPvfV8LKDAJG3zrWZkscND3tvLiNQnUC2CBmIjAKjrsnurDq0o5--oYDtShXwMIch8IU_it6IfplrYaW6QYyArxyKmkPNUhsPgITMceBQg9P0tc9bka9rdw-YmowsoyqBthMLlyAK-XaoQ5xrqLhhu69kTALiZsIzZt1DfGyVmcdRosaIkfODdOqNPu9V1klyYUMxrN8idI3A7WCGJDsVnxWIkFbI3CdGna6Wcb8x_GZdgLCaAaFF_"/>
+</div>
+<button class="w-14 h-14 rounded-full border-[4px] border-on-background bg-secondary text-surface-container-lowest flex items-center justify-center shrink-0 shadow-[4px_4px_0px_0px_#1a1a1a] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all z-20" onclick="document.getElementById('voiceModal').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-3xl font-bold">mic</span>
+</button>
+<div class="flex-1 relative z-20">
+<input class="w-full h-16 rounded-full border-[4px] border-on-background px-6 font-body-lg text-xl font-bold text-on-background focus:outline-none focus:border-secondary-container bg-surface-container-lowest shadow-[6px_6px_0px_0px_#1a1a1a] placeholder:text-on-surface-variant/50 placeholder:font-bold" placeholder="type your vibe..." type="text"/>
+</div>
+<button class="w-14 h-14 rounded-full border-[4px] border-on-background bg-on-background text-surface-container-lowest flex items-center justify-center shrink-0 shadow-[4px_4px_0px_0px_rgba(28,27,27,0.5)] hover:bg-primary hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1a1a] active:translate-y-1 active:shadow-[0px_0px_0px_0px_#1a1a1a] transition-all z-20 transform rotate-12">
+<span class="material-symbols-outlined text-3xl font-bold -ml-1">send</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-bright border-t-[4px] border-on-background z-50 shadow-[0px_-8px_0px_0px_rgba(26,26,26,1)]">
+<ul class="flex justify-around items-center p-2">
+<li>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined font-bold">home</span>
+<span class="text-[10px] font-extrabold uppercase mt-1">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined font-bold">show_chart</span>
+<span class="text-[10px] font-extrabold uppercase mt-1">Market</span>
+</a>
+</li>
+<li class="transform -translate-y-4">
+<a class="flex flex-col items-center p-4 bg-secondary-container text-on-secondary-container rounded-2xl border-[3px] border-on-background shadow-[4px_4px_0px_0px_#1a1a1a] transform -rotate-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mood</span>
+<span class="text-[12px] font-extrabold uppercase mt-1">Vibe</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined font-bold">account_balance</span>
+<span class="text-[10px] font-extrabold uppercase mt-1">Portfolio</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined font-bold">settings</span>
+<span class="text-[10px] font-extrabold uppercase mt-1">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Voice Overlay Modal (Hidden) -->
+<div class="hidden fixed inset-0 z-[100] bg-surface/95 backdrop-blur-md flex flex-col items-center justify-center p-6 doodle-bg" id="voiceModal">
+<!-- Close Button -->
+<button class="absolute top-6 right-6 w-12 h-12 rounded-full border-[4px] border-on-background flex items-center justify-center bg-surface-container-lowest btn-shadow hover:bg-error hover:text-on-error transition-colors" onclick="document.getElementById('voiceModal').classList.add('hidden')">
+<span class="material-symbols-outlined font-bold text-2xl">close</span>
+</button>
+<!-- Language Pills -->
+<div class="absolute top-6 flex gap-3 transform rotate-2">
+<button class="px-4 py-2 border-[3px] border-on-background rounded-xl bg-primary text-on-primary font-bold text-ticker-data shadow-[4px_4px_0px_0px_#1a1a1a] hover:-translate-y-1 transition-transform">EN</button>
+<button class="px-4 py-2 border-[3px] border-on-background rounded-xl bg-surface-container-lowest text-on-background font-bold text-ticker-data shadow-[4px_4px_0px_0px_#1a1a1a] hover:-translate-y-1 transition-transform">HI</button>
+<button class="px-4 py-2 border-[3px] border-on-background rounded-xl bg-surface-container-lowest text-on-background font-bold text-ticker-data shadow-[4px_4px_0px_0px_#1a1a1a] hover:-translate-y-1 transition-transform">TA</button>
+<button class="px-4 py-2 border-[3px] border-on-background rounded-xl bg-surface-container-lowest text-on-background font-bold text-ticker-data shadow-[4px_4px_0px_0px_#1a1a1a] hover:-translate-y-1 transition-transform">TE</button>
+</div>
+<div class="flex flex-col items-center max-w-md w-full gap-8 relative">
+<!-- Decorative tape -->
+<div class="absolute -top-10 -left-10 w-24 h-10 bg-secondary opacity-80 transform -rotate-12 z-10 mix-blend-multiply border-[3px] border-on-background"></div>
+<!-- Mascot Listening -->
+<div class="w-56 h-56 rounded-full border-[6px] border-on-background bg-secondary-fixed overflow-hidden shadow-[8px_8px_0px_0px_#1a1a1a] mb-6 transform rotate-3">
+<img class="w-full h-full object-cover" data-alt="A stylized 2D flat illustration of a playful ghost-flame mascot in a vibrant retro 70s maximalist style. The mascot is holding one hand to its ear in a 'listening' pose. Drawn with thick black outlines on a solid hot pink background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDUscqpTjWKsOJD8T9RbxvEAMTD3vEYCM58riR3wKo54IddKPUFWqoz6jfSnSC_fMNsnPP75dqPfLOs6GamoiebdxxUV_JhObs83g_Lh4bS_YnsS6jTqiDEmOeWm6DoIg9ohK4JWOobGw70k0BG6IFJE5A4wxTprnOdgm6YPCLuQyVfFw_48C7-5zypv4JCcpAEHtP6WpMHQgXzDiOF_VJzH_JvQSccP6y4NJf-yPxch0798CZXuR2QRgIUYOEdrkwI4ET-IPt8oLL"/>
+</div>
+<h3 class="font-display-xl text-5xl font-extrabold text-on-background pulse-text uppercase tracking-tighter transform -rotate-2 bg-primary-fixed inline-block px-4 py-2 border-[4px] border-on-background shadow-[6px_6px_0px_0px_#1a1a1a]">i'm listening... 👂</h3>
+<!-- Waveform -->
+<div class="flex items-end justify-center gap-2 h-32 w-full mt-8 bg-surface-container-lowest p-4 rounded-3xl border-[4px] border-on-background shadow-[8px_8px_0px_0px_#1a1a1a]">
+<!-- Generating some random height bars for the waveform -->
+<script>
+                    for(let i=0; i<24; i++) {
+                        let delay = Math.random() * 1.2;
+                        let height = 20 + Math.random() * 80;
+                        document.write(`<div class="w-3 rounded-full bg-on-background border-2 border-transparent waveform-bar" style="height: ${height}%; animation-delay: -${delay}s; background-color: ${['#630ed4', '#b4136d', '#fd56a7', '#ffb690'][i%4]}"></div>`);
+                    }
+                </script>
+</div>
+<button class="mt-8 w-20 h-20 rounded-full bg-error text-on-error flex items-center justify-center border-[4px] border-on-background shadow-[6px_6px_0px_0px_#1a1a1a] hover:scale-110 active:scale-95 transition-all transform rotate-6" onclick="document.getElementById('voiceModal').classList.add('hidden')">
+<span class="material-symbols-outlined text-5xl font-bold">stop</span>
+</button>
+</div>
+</div>
+</body></html>
